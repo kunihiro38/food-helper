@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/contact_form.css' %}">
+    <title>新規会員登録画面</title>
+</head>
+
+
+<body>
+  <header>
+  <div class="header">
+    <div class="header-left">
+      <a href="{% url 'foodrescue:index' %}">
+        <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
+      </a>
+    </div>
+
+    <div class="header-right">
+        <a href="{% url 'foodrescue:create_account' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+        <a href="{% url 'foodrescue:loginscreen' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+    </div>
+  </div>
+</header>
+
+
+
+
+  <!-- <form method='POST' action='{% url "foodrescue:create_account" %}'> -->
+  <form method='POST' action='{% url "foodrescue:create_account" %}'>
+    <h1>ログインフォーム</h1>
+    <h1>ログインフォーム</h1>
+    <h1>ログインフォーム</h1>
+    <h1>ログインフォーム</h1>
+    {% csrf_token %}
+    <label>ユーザーID</label>
+    {{ form.username}}
+    {{form.username.errors}}
+    <label>パスワード</label>
+    {{form.password1}}
+    {{form.password1.errors}}
+    <labe>パスワード（確認）</label>
+      {{form.password2}}
+      {{form.password2.errors}}
+      <button type = "submit">登録</button>
+    </form>
+
+
+
+      <div class="footer">
+        <div class="footer-logo">
+          <a href="{% url 'foodrescue:index' %}">
+          <img class="footer-logo" src="{% static "images/food-helper-logo2.png" %}" ref="{% url 'foodrescue:index' %}" height="50" width="160" alt="footer-logo">
+          </a>
+        </div>
+        <div class="footer-list">
+          <ul>
+            <li><a href="{% url 'foodrescue:guide' %}" style="text-decoration:none;">利用ガイド</a></li>
+            <li><a href="{% url 'foodrescue:operation' %}" style="text-decoration:none;">運営</a></li>
+            <li><a href="{% url 'foodrescue:service' %}" style="text-decoration:none;">利用規約</a></li>
+            <li><a href="{% url 'foodrescue:privacy' %}" style="text-decoration:none;">プライバシーポリシー</a></li>
+          	<li><a href="{% url 'foodrescue:contact_form' %}" style="text-decoration:none;">お問い合わせ</a></li>
+          	<li><a href="{% url 'foodrescue:create' %}" style="text-decoration:none;">クリエイト</a></li>
+          </ul>
+        </div>
+      </div>
+      </footer>
+
+      <div class="copyright">
+        <p><small>© 2019 Food helper</small></p>
+      </div>
+    </body>
+</html>
