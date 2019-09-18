@@ -31,16 +31,16 @@ ALLOWED_HOSTS = []
 
 # 0915お問い合わせフォーム作成 Gmailで送信する場合#
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "" #Gitに載せるときは削除！！！
+EMAIL_HOST_USER = "" # Gitに載せるときは削除！！！
 EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# 0915お問い合わせフォーム作成#
+# 0915お問い合わせフォーム作成
 
 
 # Application definition
 
-#↓djangoで作成↓アプリが認識されている、という項目
+# ↓djangoで作成↓アプリが認識されている、という項目
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'myapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        #以下は國弘のローカルのマックにある、接続情報
-        #以前作成したpythonファイルは、機械が自動でコードを選んでいたが、eclipseは決め打ちしなければならない
-        'NAME': 'sample', #作成したデータベース名
-        'USER': 'root',#ログインユーザー名
-        'PASSWORD' : '',
+        # 以下は國弘のローカルのマックにある、接続情報
+        # 以前作成したpythonファイルは、機械が自動でコードを選んでいたが、eclipseは決め打ちしなければならない
+        'NAME': 'sample',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
