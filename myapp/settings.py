@@ -43,6 +43,7 @@ EMAIL_USE_TLS = True
 # ↓djangoで作成↓アプリが認識されている、という項目
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,7 +68,9 @@ ROOT_URLCONF = 'myapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,3 +151,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIR = [
     STATIC_DIR
     ]
+# Login後のリダイレクト
+LOGIN_REDIRECT_URL = '/'
