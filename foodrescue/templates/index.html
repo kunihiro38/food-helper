@@ -24,17 +24,10 @@
             <p>こんにちは,{{user.username}}さん</p>
             <a href="{% url 'foodrescue:loginscreen' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
             {% else %}
-            <a href="{% url 'foodrescue:create_account' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
-            <a href="{% url 'foodrescue:loginscreen' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+            <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+            <a href="{% url 'login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
             {% endif %}
         </div>
-        <!-- ⬆︎をコメントアウト解除して、↓をコメントアウトすると、ログイン画面ができる -->
-
-        <!-- <div class="header-right">
-            <a href="{% url 'foodrescue:create' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
-            <a href="{% url 'foodrescue:loginscreen' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
-        </div> -->
-
 
 
       </div>
@@ -47,7 +40,7 @@
           <h4>フートヘルパーとは</h4>
           <h4>ITで小売業×消費者を結びつけて食品ロスを失くす</h4>
           <div class="btn-wrapper">
-            <a href="{% url 'foodrescue:create' %}" class="btn signup" style="text-decoration:none;">新規登録はこちら</a>
+            <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規登録はこちら</a>
             <p>or sign up with</p>
             <a href="#" class="btn facebook" style="text-decoration:none;"><span class="fa fa-facebook"></span>Facebookで登録</a>
             <a href="#" class="btn twitter" style="text-decoration:none;"><span class="fa fa-twitter"></span>Twitterで登録</a>

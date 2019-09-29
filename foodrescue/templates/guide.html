@@ -17,13 +17,18 @@
                 <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
               </a>
             </div>
-
+            
             <div class="header-right">
-                <a href="{% url 'foodrescue:create' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+                {%if user.id %}
+                <p>ログインしました</p>
+                <p>こんにちは,{{user.username}}さん</p>
+                <a href="{% url 'foodrescue:loginscreen' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
+                {% else %}
+                <a href="{% url 'foodrescue:create_account' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
                 <a href="{% url 'foodrescue:loginscreen' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+                {% endif %}
             </div>
-          </div>
-        </header>
+          </header>
 
 
 
