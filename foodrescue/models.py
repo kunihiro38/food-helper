@@ -1,7 +1,9 @@
 #coding:utf-8
 # modelはデータベースのテーブルとカラムの定義と、「モデル」と呼ばれるクラスとそのクラス属性の定義を対応させ、DBのレコード1件1件をモデルクラスのオブジェクトとして扱えるようにする仕組み。
-
+import time
 from django.db import models
+from django.utils import timezone
+from datetime import datetime
 # Create your models here.
 
 class Member(models.Model):
@@ -14,7 +16,8 @@ class Member(models.Model):
     #null制約（デフォルト値はFalse:許可しない)
     name = models.CharField(verbose_name='名前', max_length=20)
     #本来的には、新規会員登録した際のメールアドレスをここに使用したい
-    email = models.EmailField(label=_('メールアドレス'), required=True, help_text=_("Required."))
+    #⇨signupから直接プロフィール作成画面に飛ばすから、メールアドレスは既に登録されたものとして扱うので、ここでは作成しない
+    #email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
     GENDER_CHOICES = (
         (1, '男'),
         (2, '女'),
@@ -53,11 +56,11 @@ class Member(models.Model):
     #お気に入り店舗1 プルダウンセレクトしたい
     favorite_store3 = models.CharField(verbose_name='お気に入り店舗3', max_length=200, null=True)
     #参加日時
-    created_at = models.DateTimeField('作成日時', auto_now_add=True)
+    created_at = models.DateTimeField(verbose_name='登録日時', default=datetime.now())
     #更新日時
-    updated_at = models.DateTimeField('更新日時', auto_now=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時', default=timezone.now)
     #最終ログイン
-    last_login = models.DateTimeField('最終ログイン', auto_now=True)
+    last_login = models.DateTimeField(verbose_name='最終ログイン', default=timezone.now)
 
 
     def __str__(self):

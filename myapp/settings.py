@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "foodrescue",
+    'foodrescue',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +154,5 @@ STATICFILES_DIR = [
     ]
 # Login後のリダイレクト
 LOGIN_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'accounts.CustomUser' #1004 about_sns_api_login

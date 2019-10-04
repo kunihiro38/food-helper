@@ -7,12 +7,16 @@
 
 from django.shortcuts import render,redirect
 # from django.contrib.auth.models import User #0917このままだとauth_userに登録される
-from foodrescue.models import User #0917中原さんより指摘で・・・
-#インポートしたモジュールを使ってないなら書く必要なくね？って意味？
 
 from django.contrib.auth import login, authenticate #ログイン関係
 from django.views.generic import CreateView
-from .forms import UserCreateForm
+
+from .forms import FoodrescueForm
+from .models import Member
+from foodrescue.models import Member
+from foodrescue.forms import FoodrescueForm
+
+
 
 # 0915お問い合わせフォーム作成#
 from django.urls import reverse_lazy
@@ -22,33 +26,24 @@ from django.views.generic.edit import FormView
 from .forms import ContactForm
 # 0915お問い合わせフォーム作成#
 
+#myprofileでの登録画面
+def myprofile(request):
+    if request.method == 'POST':
+        obj = Member()
+        member = FoodrescueForm(request.POST, instance=obj)
+        member.save()
+        #return render("to=index.html")
+        #return redirect("https://google.co.jp")
+        #⇨これだとgoogleへの絶対パス
+        return redirect('http://127.0.0.1:8000/') #ローカル環境のトップ画面への絶対パス、redirect()は、別のURLへ飛ばす
+#         params = {
+#         'title': 'HELLO!'
+#         'form' : FoodrescueForm()
+#         }
+    return render(request, 'index.html')
+    #key=valueの形式で複数の値を渡す
+     #renderはテンプレートHTMLに値をバインドしたものをレスポンスとしてブラウザに表示させる
 
-
-
-#アカウント作成
-class Create_account(CreateView):
-    def post(self, request, *args, **kwargs):
-        form = UserCreateForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            #フォームから#username"を読み取る
-            username = form.cleaned_data.get('username')
-            #フォームから"password1"を読み取る
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('/')
-        return render(request,"create.html", {"form":form,})
-
-    def get(self,request, *args, **kwargs):
-        form = UserCreateForm(request.POST)
-        return render(request,"create.html",{"form":form,})
-
-create_account = Create_account.as_view()
-
-
-def create(request):
-    return render(request,"create.html")
 
 def index(request):
     return render(request,'index.html')
@@ -99,7 +94,7 @@ def guide(request): # bservice関数
 # 0915お問い合わせフォーム作成#
 
 class ContactFormView(FormView):
-    template_name = 'contact/contact_form.html'
+    template_name = 'foodrescue/contact_form.html'
     form_class = ContactForm
     success_url = reverse_lazy('contact_result')
 
@@ -109,7 +104,7 @@ class ContactFormView(FormView):
 
 
 class ContactResultView(TemplateView):
-    template_name = 'contact/contact_result.html'
+    template_name = 'foodrescue/contact_result.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

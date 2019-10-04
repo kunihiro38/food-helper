@@ -5,28 +5,82 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'accounts_style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="{% static "css/privacy.css" %}"/> -->
     <title>{% if request.path != '/' %}{% block title %}{% endblock %} | {% endif %}Blog App with Auth | Django2 Tutorial</title>
 </head>
+
+
 <body>
+<div conteiner>
+</div>
+  <header>
+  <div class="header">
+    <div class="header-left">
+      <a href="{% url 'foodrescue:index' %}">
+        <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
+      </a>
+    </div>
+
+    <div class="header-right">
+        {%if user.id %}
+        <p>ログインしました</p>
+        <p>こんにちは、{{user.username}}さん</p>
+        <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
+        {% else %}
+        <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+        <a href="{% url 'accounts:login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+        {% endif %}
+    </div>
+  </header>
+
+
+
+
+
 <div class="container">
-    <header>
-        <p class="site-name"><a href="">Blog App</a></p>
-        <nav>
+        <!-- <p class="site-name"><a href="">これ消したい</a></p> -->
+        <!-- <nav>
             <ul>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}" class="logout">Logout</a></li>
+                <li><a href="{% url 'accounts:logout' %}" class="logout">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'accounts:signup' %}" class="signup">Sign up</a></li>
-                <li><a href="{% url 'login' %}" class="login">Login</a></li>
+                <li><a href="{% url 'accounts:login' %}" class="login">Login</a></li>
                 {% endif %}
                 <li><a href="" class="act">Add Post</a></li>
             </ul>
-        </nav>
-    </header>
+        </nav> -->
+
     <div class="content">
         {% block content %}{% endblock %}
     </div>
 </div>
+
+
+
+<footer>
+  <div class="footer">
+    <div class="footer-logo">
+      <a href="{% url 'foodrescue:index' %}">
+      <img class="footer-logo" src="{% static "images/food-helper-logo2.png" %}" ref="{% url 'foodrescue:index' %}" height="50" width="160" alt="footer-logo">
+      </a>
+    </div>
+    <div class="footer-list">
+      <ul>
+        <li><a href="{% url 'foodrescue:guide' %}" style="text-decoration:none;">利用ガイド</a></li>
+        <li><a href="{% url 'foodrescue:operation' %}" style="text-decoration:none;">運営</a></li>
+        <li><a href="{% url 'foodrescue:service' %}" style="text-decoration:none;">利用規約</a></li>
+        <li><a href="{% url 'foodrescue:privacy' %}" style="text-decoration:none;">プライバシーポリシー</a></li>
+        <li><a href="{% url 'foodrescue:contact_form' %}" style="text-decoration:none;">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  </footer>
+
+  <div class="copyright">
+    <p><small>© 2019 Food helper</small></p>
+  </div>
 </body>
 </html>

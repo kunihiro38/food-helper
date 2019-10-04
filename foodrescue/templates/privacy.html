@@ -22,10 +22,10 @@
                 {%if user.id %}
                 <p>ログインしました</p>
                 <p>こんにちは,{{user.username}}さん</p>
-                <a href="{% url 'foodrescue:loginscreen' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
+                <a href="{% url 'logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
                 {% else %}
-                <a href="{% url 'foodrescue:create_account' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
-                <a href="{% url 'foodrescue:loginscreen' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+                <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+                <a href="{% url 'login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
                 {% endif %}
             </div>
           </header>
@@ -145,7 +145,7 @@
 
 
 
-
+        <footer>
           <div class="footer">
             <div class="footer-logo">
               <a href="{% url 'foodrescue:index' %}">

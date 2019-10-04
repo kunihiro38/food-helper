@@ -3,9 +3,7 @@
 # classに記載した内容が、html表示時に反映される!!
 
 from django import forms
-from .models import User
-# from foodrescue.models import User #0911追加これ入力したらなぜか行けた・・・0917 foodrescueを追記
-from django.contrib.auth.forms import UserCreationForm #0911追加
+from .models import Member
 
 # 0915お問い合わせフォーム作成#
 from django.conf import settings
@@ -13,19 +11,12 @@ from django.core.mail import BadHeaderError,send_mail
 from django.http import HttpResponse
 # 0915お問い合わせフォーム作成#
 
-class UserCreateForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        #htmlの表示を変更可能にします
-        self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['password1'].widget.attrs['class'] = 'form-control'
-        self.fields['password2'].widget.attrs['class'] = 'form-control'
+class FoodrescueForm(forms.ModelForm):
+    class Meta:
+        model = Member
+        fields = ['name', 'gender', 'age', 'zip_code', 'address1', 'address2', 'self_introduction',
+                  'favorite_store1', 'favorite_store2', 'favorite_store3', 'created_at', 'updated_at', 'last_login']
 
-        class Meta:#class Metaとは・・・「class文の持つ定義する機能」を定義する機能
-            model = User
-            fields = ("username","password1","password2",) #0911 ()だとまた何か違うのか？⇨どっちも一緒
-
-# なぜかここのMetaタグを上のdefに合わせると上手く表示される・・・なぜ？？？？？
 
 
 # 0915お問い合わせフォーム作成#

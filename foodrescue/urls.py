@@ -19,16 +19,11 @@ urlpatterns = [
     path('contact', ContactFormView.as_view(), name='contact_form'),
     path('contact/result/', ContactResultView.as_view(), name='contact_result'),
 
-
     path('required', views.required, name='required'),
     path('mainvisual', views.mainvisual, name='mainvisual'),
     path('search', views.search, name='search'),
     path('imagelist', views.imagelist, name='imagelist'),
     path('zoomimage', views.zoomimage, name='zoomimage'),
     path('myprofile', views.myprofile, name='myprofile'),
-    path('editprofile', views.editprofile, name='editprofile'),
     path('guide', views.guide, name='guide'),
-
-    path('create', views.create, name='create'),
-    path('create_account', views.create_account, name='create_account'),
     ]
