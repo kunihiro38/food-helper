@@ -23,7 +23,7 @@ class Member(models.Model):
       help_text=_("Required.")でmigrationsを実行するとエラーになります。対応願います。
 
     """
-    email = models.EmailField(label=('メールアドレス'), required=True, help_text=_("Required."))
+    email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
     GENDER_CHOICES = (
         (1, '男'),
         (2, '女'),
