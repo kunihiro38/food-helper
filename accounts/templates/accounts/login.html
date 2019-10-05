@@ -1,0 +1,38 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>ログイン</h1>
+<section class="common-form">
+    {% if form.errors %}
+    <p class="error-msg">Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+    {% if user.is_authenticated %}
+    <p class="error-msg">Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+    {% else %}
+    <p class="error-msg">Please login to see this page.</p>
+    {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit">ログイン</button>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
+    <div class="btn-wrapper">
+      <a href="#" class="btn facebook" style="text-decoration:none;"><span class="fa fa-facebook"></span>Facebookでログイン</a><br>
+        <a href="#" class="btn twitter" style="text-decoration:none;"><span class="fa fa-twitter"></span>Twitterでログイン</a>
+
+    </div>
+    <hr width="40%" noshade class="border">
+
+    <a href="{% url 'accounts:signup' %}" class="new-register" style="text-decoration:none;">新規会員登録</a>
+
+</section>
+{% endblock %}
