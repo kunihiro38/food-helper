@@ -14,16 +14,19 @@ class Member(models.Model):
     # 主キー(id)は自動生成されるので明示的に定義する必要なし
     # null制約（デフォルト値はFalse:許可しない)
     name = models.CharField(verbose_name='名前', max_length=20)
-    #本来的には、新規会員登録した際のメールアドレスをここに使用したい
-    #⇨signupから直接プロフィール作成画面に飛ばすから、メールアドレスは既に登録されたものとして扱うので、ここでは作成しない
-    #email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
+    # 本来的には、新規会員登録した際のメールアドレスをここに使用したい
+    # ⇨signupから直接プロフィール作成画面に飛ばすから、メールアドレスは既に登録されたものとして扱うので、ここでは作成しない
+    # email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
     # 本来的には、新規会員登録した際のメールアドレスをここに使用したい　
     """
      →　ここはauth_userとの結合をすればいいのではないでしょうか？
       help_text=_("Required.")でmigrationsを実行するとエラーになります。対応願います。
+      Emailはauth_userで管理するため不要なのでコメントアウト
+      ただ、誰が投稿したかということがわからないと結合できないのでそのカラムを設置(外部キーを春ともっといいと思います。）
 
     """
-    email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
+    # email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
+    authUser = models.IntegerField(default=0)
     GENDER_CHOICES = (
         (1, '男'),
         (2, '女'),
@@ -74,11 +77,11 @@ class Member(models.Model):
     favorite_store2 = models.CharField(verbose_name='お気に入り店舗2', max_length=200, null=True)
     # お気に入り店舗1 プルダウンセレクトしたい
     favorite_store3 = models.CharField(verbose_name='お気に入り店舗3', max_length=200, null=True)
-    #参加日時
+    # 参加日時
     created_at = models.DateTimeField(verbose_name='登録日時', default=datetime.now())
-    #更新日時
+    # 更新日時
     updated_at = models.DateTimeField(verbose_name='更新日時', default=timezone.now)
-    #最終ログイン
+    # 最終ログイン
     last_login = models.DateTimeField(verbose_name='最終ログイン', default=timezone.now)
 
     def __str__(self):
@@ -96,4 +99,4 @@ class User(models.Model):
 
 #     def __str__(self): #これがないとmigrateした時にデータベースが作成されない!!!
 #         return '&lt;Friend:id =' + str(self.id) + ',' + self.name + '(' + str(self.age) + ')&gt;'
-#     &lt;や&gt;はタグなどに使われる開始（<）終了（>)タグを意味する。
+# &lt;や&gt;はタグなどに使われる開始（<）終了（>)タグを意味する。
