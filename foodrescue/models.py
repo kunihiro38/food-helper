@@ -31,6 +31,7 @@ class Member(models.Model):
         (2, '女'),
         (3, 'その他'),
         )
+
     gender = models.IntegerField(verbose_name='性別', choices=GENDER_CHOICES, blank=True, null=True)
     # 年齢のプルダウン参考　https://qiita.com/okoppe8/items/a1149b2be54441951de1
     YEAR_CHOICES = (
