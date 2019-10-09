@@ -4,75 +4,112 @@
     <head>
       <!-- head内は基本的な情報の部分なのでbody以下の見た目の部分に反映されない -->
       <meta charset="utf-8">
-		  <link rel="stylesheet" href="{% static "css/privacy.css" %}"/>
-      <title>利用ガイド</title>
+		  <link rel="stylesheet" href="{% static "css/guide.css" %}"/>
+      <title>フードヘルパー</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     </head>
 
+    <body id="a001">
+      <header>
+      <div class="header">
+        <div class="header-left">
+          <a href="{% url 'foodrescue:index' %}">
+            <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
+          </a>
+        </div>
 
-        <body>
-          <header>
-          <div class="header">
-            <div class="header-left">
-              <a href="{% url 'foodrescue:index' %}">
-                <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
-              </a>
+        <div class="header-right">
+            {%if user.id %}
+            <p>ログインしました</p>
+            <p>こんにちは,{{user.username}}さん</p>
+            <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
+            {% else %}
+            <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+            <a href="{% url 'accounts:login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+            {% endif %}
+        </div>
+
+
+      </div>
+      </header>
+
+      <div class="top-wrapper">
+        <div class="container">
+          <div class="how-to-use">
+            <div class="use-about0">利用の流れ</div>
+            <p class="use-about1">使い方はとっても簡単!<br>
+              フードヘルパーはじめてガイド
+            </p>
+            <div class="use-about2">登録から写真のシェア・投稿まで<br>
+              簡単4ステップでご利用いただけます。
             </div>
-
-            <div class="header-right">
-                {%if user.id %}
-                <p>ログインしました</p>
-                <p>こんにちは,{{user.username}}さん</p>
-                <a href="{% url 'logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
-                {% else %}
-                <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
-                <a href="{% url 'login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
-                {% endif %}
             </div>
-          </header>
-
-
-
-        <div class="contents">
-              <h1>これは利用ガイドの紹介になります。</h1>
-              <p>これを見て使い方がわかります！！！</p>
-
-
-              <h2>そこからどうするのか？</h2>
-              <p>少しでもフードロスを無くすには・・・。正直CtoCに付け入らないで、身の回りのできることから始めよう！と考えました。
-                まずは身の回りの・・・ということでスーパーに目をつけました。よく夕方に差し掛かった頃にスーパーに行くと、割引の値札
-                がつけられていると思います。そのような小さいことから取り組んで行きたいと思いこのサービスをはじめました！
-
-              </p>
+          </div>
           </div>
 
 
-
-
-
-
-
-
-          <footer>
-          <div class="footer">
-            <div class="footer-logo">
-              <a href="{% url 'foodrescue:index' %}">
-              <img class="footer-logo" src="{% static "images/food-helper-logo2.png" %}" ref="{% url 'foodrescue:index' %}" height="50" width="160" alt="footer-logo">
-              </a>
+      <div class="guide-wrapper">
+        <div class="container">
+          <div class="heading">
+            <h2>4つの簡単ステップであなたもフードヘルパーに!</h2>
+          </div>
+            <div class="guide">
+            <div class="guide-icon">
+              <img src="{% static "images/signup.jpg" %}" height="200px" width="270px" alt="signup" >
+              <p class="icon-title">01.登録</p>
             </div>
-            <div class="footer-list">
-              <ul>
-                <li><a href="{% url 'foodrescue:guide' %}" style="text-decoration:none;">利用ガイド</a></li>
-                <li><a href="{% url 'foodrescue:operation' %}" style="text-decoration:none;">運営</a></li>
-                <li><a href="{% url 'foodrescue:service' %}" style="text-decoration:none;">利用規約</a></li>
-                <li><a href="{% url 'foodrescue:privacy' %}" style="text-decoration:none;">プライバシーポリシー</a></li>
-              	<li><a href="{% url 'foodrescue:contact_form' %}" style="text-decoration:none;">お問い合わせ</a></li>
-              </ul>
+            <p class="txt-contents">ユーザー登録をして検索!<br>気になる最寄りのスーパーを見つけたら、向かいましょう!</p>
+            </div>
+
+            <div class="guide">
+            <div class="guide-icon">
+              <img src="{% static "images/dasimen.jpg" %}" height="200px" width="270px" alt="signup">
+              <p class="icon-title">02.売り場で発見</p>
+            </div>
+            <p class="txt-contents">売場で値引き商品を見つけたら写真を撮りましょう!</p>
+            </div>
+
+            <div class="guide">
+            <div class="guide-icon">
+              <img src="{% static "images/post.png" %}" height="200px" width="270px" alt="signup">
+              <p class="icon-title">03.写真のシェア</p>
+            </div>
+            <p class="txt-contents">投稿サイトから該当のスーパーを選んで、写真を投稿しましょう!</p>
+            </div>
+            <div class="guide">
+            <div class="guide-icon">
+              <!-- <img src="https://prog-8.com/images/html/advanced/php.png" alt=""> -->
+              <img src="{% static "images/save_earth.png" %}" height="200px" width="270px" alt="signup">
+              <p class="icon-title">04.地球を救う</p>
+            </div>
+            <p class="txt-contents">私たちの目標は値引き商品をシェアをする事で食品廃棄物を削減することです。</p>
+
+            </div>
             </div>
           </div>
-          </footer>
+      <div class="message-wrapper">
+      </div>
 
-          <div class="copyright">
-            <p><small>© 2019 Food helper</small></p>
-          </div>
-        </body>
-    </html>
+
+      <div class="footer">
+        <div class="footer-logo">
+          <a href="{% url 'foodrescue:index' %}">
+          <img class="footer-logo" src="{% static "images/food-helper-logo2.png" %}" ref="{% url 'foodrescue:index' %}" height="50" width="160" alt="footer-logo">
+          </a>
+        </div>
+        <div class="footer-list">
+          <ul>
+            <li><a href="{% url 'foodrescue:guide' %}" style="text-decoration:none;">利用ガイド</a></li>
+            <li><a href="{% url 'foodrescue:operation' %}" style="text-decoration:none;">運営</a></li>
+            <li><a href="{% url 'foodrescue:service' %}" style="text-decoration:none;">利用規約</a></li>
+            <li><a href="{% url 'foodrescue:privacy' %}" style="text-decoration:none;">プライバシーポリシー</a></li>
+          	<li><a href="{% url 'foodrescue:contact_form' %}" style="text-decoration:none;">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      </footer>
+      <div class="copyright">
+        <p><small>© 2019 Food helper</small></p>
+      </div>
+    </body>
+</html>

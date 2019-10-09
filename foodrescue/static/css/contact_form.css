@@ -11,6 +11,10 @@ header {
   position:fixed; */
   top:0;
   z-index:10;
+  display: table;
+  margin: 0 0 0px;
+  padding: 2px 0;
+  border-bottom: 1px solid #cccccc;
 }
 .header-logo {
   float: left;
@@ -61,33 +65,22 @@ header {
   /* hover後の文字色 */
 }
 
-
-/* ----------------------- */
-.contact-form{
-  padding:100px 0px 30px 0px;
-  text-align: center;
+.main {
+    line-height: 1.8;
+    box-sizing: border-box;
+    margin: 0  auto;
+    padding-top: 50px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
 }
 
-input[type="text"],input[type="email"]{
-  width:300px;
-  font-family:sans-serif;
-  font-size:16px;
-}
 
-textarea{
-  border: 1px solid #ccc;
-  width:300px;
-  height:200px;
-  margin-top:10px;
-  font-size:18px;
-}
+.btn-primary{
+  background-color: white;
+  color: black;
 
-.contact_submit{
-  background-color: #dee7ec;
-  color: #889eab;
 }
-
-/* ----------------------- */
 
 
 

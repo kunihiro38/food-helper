@@ -29,13 +29,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# 0915お問い合わせフォーム作成 Gmailで送信する場合#
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "" # Gitに載せるときは削除！！！
-EMAIL_HOST_PASSWORD = ""
+# お問い合わせフォーム作成 Gmailで送信する場合#
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '' # 基本必要!!Gitに載せるときは削除！！！
+EMAIL_HOST_PASSWORD = '' # 基本必要!!Gitに載せるときは削除！！！
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# 0915お問い合わせフォーム作成
+
 
 
 # Application definition
@@ -155,4 +155,4 @@ STATICFILES_DIR = [
 # Login後のリダイレクト
 LOGIN_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'accounts.CustomUser' #1004 about_sns_api_login
+# AUTH_USER_MODEL = 'accounts.CustomUser' #1004 about_sns_api_login

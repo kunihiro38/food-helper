@@ -4,12 +4,13 @@
 
 from django import forms
 from .models import Member
+from foodrescue.models import Member
 
-# 0915お問い合わせフォーム作成#
+# お問い合わせフォーム専用
 from django.conf import settings
-from django.core.mail import BadHeaderError,send_mail
+from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
-# 0915お問い合わせフォーム作成#
+
 
 class FoodrescueForm(forms.ModelForm):
     class Meta:
@@ -19,7 +20,7 @@ class FoodrescueForm(forms.ModelForm):
 
 
 
-# 0915お問い合わせフォーム作成#
+# お問い合わせフォーム作成#
 class ContactForm(forms.Form):
     name = forms.CharField(
         label='',

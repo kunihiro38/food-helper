@@ -5,24 +5,19 @@
 # 3.エラーを通知するためのレスポンス
 #ここに書いた内容が、htmlでのpost時にDBに反映される
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 # from django.contrib.auth.models import User #0917このままだとauth_userに登録される
 
 from django.contrib.auth import login, authenticate #ログイン関係
 from django.views.generic import CreateView
 
-from .forms import FoodrescueForm
-from .models import Member
 from foodrescue.models import Member
-from foodrescue.forms import FoodrescueForm
-
-
+from .forms import FoodrescueForm
 
 # 0915お問い合わせフォーム作成#
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-
 from .forms import ContactForm
 # 0915お問い合わせフォーム作成#
 
@@ -32,18 +27,12 @@ def myprofile(request):
         obj = Member()
         member = FoodrescueForm(request.POST, instance=obj)
         member.save()
-        #return render("to=index.html")
-        #return redirect("https://google.co.jp")
-        #⇨これだとgoogleへの絶対パス
-        return redirect('http://127.0.0.1:8000/') #ローカル環境のトップ画面への絶対パス、redirect()は、別のURLへ飛ばす
-#         params = {
-#         'title': 'HELLO!'
-#         'form' : FoodrescueForm()
-#         }
-    return render(request, 'index.html')
-    #key=valueの形式で複数の値を渡す
-     #renderはテンプレートHTMLに値をバインドしたものをレスポンスとしてブラウザに表示させる
+        return render("foodrescue/index.html")
+        return redirect('/')
 
+    else:
+        form = FoodrescueForm()
+        return render(request, 'myprofile.html', {'form':form})
 
 def index(request):
     return render(request,'index.html')
@@ -76,27 +65,23 @@ def search(request): # bservice関数
     return render(request,'search.html') # searrch.htmlを返す
 
 def imagelist(request): # bservice関数
-    return render(request,'imagelist.html') # imagelist.htmlを返す
+    return render(request, 'imagelist.html') # imagelist.htmlを返す
 
 def zoomimage(request): # bservice関数
-    return render(request,'zoomimage.html') # imagelist.htmlを返す
-
-def myprofile(request): # bservice関数
-    return render(request,'myprofile.html') # myprofile.htmlを返す
+    return render(request, 'zoomimage.html') # imagelist.htmlを返す
 
 def editprofile(request): # bservice関数
-    return render(request,'editprofile.html') # myprofile.htmlを返す
+    return render(request, 'editprofile.html') # myprofile.htmlを返す
 
 def guide(request): # bservice関数
     return render(request,'guide.html') # guide.htmlを返す
 
 
 # 0915お問い合わせフォーム作成#
-
 class ContactFormView(FormView):
-    template_name = 'foodrescue/contact_form.html'
+    template_name = 'contact/contact_form.html'
     form_class = ContactForm
-    success_url = reverse_lazy('contact_result')
+    success_url = reverse_lazy('foodrescue:contact_result')
 
     def form_valid(self, form):
         form.send_email()
@@ -104,7 +89,7 @@ class ContactFormView(FormView):
 
 
 class ContactResultView(TemplateView):
-    template_name = 'foodrescue/contact_result.html'
+    template_name = 'contact/contact_result.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

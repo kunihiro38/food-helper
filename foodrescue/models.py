@@ -16,15 +16,14 @@ class Member(models.Model):
     name = models.CharField(verbose_name='名前', max_length=20)
     # 本来的には、新規会員登録した際のメールアドレスをここに使用したい
     # ⇨signupから直接プロフィール作成画面に飛ばすから、メールアドレスは既に登録されたものとして扱うので、ここでは作成しない
-    # email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
-    # 本来的には、新規会員登録した際のメールアドレスをここに使用したい　
+    # email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))    # 本来的には、新規会員登録した際のメールアドレスをここに使用したい　
     """
      →　ここはauth_userとの結合をすればいいのではないでしょうか？
       help_text=_("Required.")でmigrationsを実行するとエラーになります。対応願います。
       Emailはauth_userで管理するため不要なのでコメントアウト
       ただ、誰が投稿したかということがわからないと結合できないのでそのカラムを設置(外部キーを春ともっといいと思います。）
-
     """
+
     # email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
     authUser = models.IntegerField(default=0)
     GENDER_CHOICES = (
@@ -64,7 +63,6 @@ class Member(models.Model):
     # 自己紹介
     """
     自己紹介は本当にChar型の200長で大丈夫？
-
     """
     self_introduction = models.CharField(verbose_name='自己紹介', max_length=200, null=True)
     # お気に入り店舗1 プルダウンセレクトしたい
@@ -87,16 +85,13 @@ class Member(models.Model):
     def __str__(self):
         return self.name
 
-
 class User(models.Model):
     username = models.CharField(max_length=100)
     password1 = models.CharField(max_length=100)
     password2 = models.CharField(max_length=100)
-
 #     def __str__(self): #これがないとmigrateした時にデータベースが作成されない!!!⇨0914いや、全く関係なかったこれ。
 #         return '&lt;User:id =' + str(self.id) + self.username + ')&gt;'
 
-
 #     def __str__(self): #これがないとmigrateした時にデータベースが作成されない!!!
-#         return '&lt;Friend:id =' + str(self.id) + ',' + self.name + '(' + str(self.age) + ')&gt;'
+#         return '&lt;Friend:id =' + str(self.id) + ',' + self.name + '(' + str(self.age) + ')&gt;'#     &lt;や&gt;はタグなどに使われる開始（<）終了（>)タグを意味する。
 # &lt;や&gt;はタグなどに使われる開始（<）終了（>)タグを意味する。

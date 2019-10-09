@@ -1,14 +1,15 @@
-{% extends 'accounts/base.html' %}
 
-{% block content %}
-<h1>Sign up</h1>
-<section class="common-form">
 
-        <form action="{% url 'foodrescue:myprofile' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_table }}
-            <input type="submit" value="click">
 
-    </form>
-</section>
-{% endblock %}
+
+          <body>
+
+              <h1>{{ title }}</h1>
+              <table>
+                  <form action="{% url 'foodrescue:myprofile' %}" method="post">
+                      {% csrf_token %}
+                      {{ form.as_p }}
+                      <input type="submit" value="click">
+
+                  </form>
+              </table>
