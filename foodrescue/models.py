@@ -1,9 +1,10 @@
-#coding:utf-8
+# coding:utf-8
 # modelはデータベースのテーブルとカラムの定義と、「モデル」と呼ばれるクラスとそのクラス属性の定義を対応させ、DBのレコード1件1件をモデルクラスのオブジェクトとして扱えるようにする仕組み。
 from django.db import models
 from django.utils import timezone
 from datetime import datetime
 # Create your models here.
+
 
 class Member(models.Model):
     """会員モデル"""
@@ -16,7 +17,8 @@ class Member(models.Model):
     name = models.CharField(verbose_name='名前', max_length=20)
     # 本来的には、新規会員登録した際のメールアドレスをここに使用したい
     # ⇨signupから直接プロフィール作成画面に飛ばすから、メールアドレスは既に登録されたものとして扱うので、ここでは作成しない
-    # email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))    # 本来的には、新規会員登録した際のメールアドレスをここに使用したい　
+    # email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
+    #  本来的には、新規会員登録した際のメールアドレスをここに使用したい　
     """
      →　ここはauth_userとの結合をすればいいのではないでしょうか？
       help_text=_("Required.")でmigrationsを実行するとエラーになります。対応願います。
@@ -86,13 +88,14 @@ class Member(models.Model):
     def __str__(self):
         return self.name
 
+
 class User(models.Model):
     username = models.CharField(max_length=100)
     password1 = models.CharField(max_length=100)
     password2 = models.CharField(max_length=100)
 #     def __str__(self): #これがないとmigrateした時にデータベースが作成されない!!!⇨0914いや、全く関係なかったこれ。
 #         return '&lt;User:id =' + str(self.id) + self.username + ')&gt;'
-
+#
 #     def __str__(self): #これがないとmigrateした時にデータベースが作成されない!!!
 #         return '&lt;Friend:id =' + str(self.id) + ',' + self.name + '(' + str(self.age) + ')&gt;'#     &lt;や&gt;はタグなどに使われる開始（<）終了（>)タグを意味する。
 # &lt;や&gt;はタグなどに使われる開始（<）終了（>)タグを意味する。
