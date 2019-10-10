@@ -110,7 +110,17 @@
       </div>
       </footer>
       <div class="copyright">
+
+
+        {% for p in photos %}
+            <div>
+                <img src="{{ p.image.url }}" />
+            </div>
+        {% endfor %}
+
+
         <p><small>© 2019 Food helper</small></p>
+
       </div>
     </body>
 </html>

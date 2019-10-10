@@ -12,8 +12,8 @@ class LoginView(AuthLoginView):
 
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
-    # 削除完了時に遷移するページ
-    success_url = reverse_lazy('login')
+    # 新規会員登録完了⇨プロフィール入力へ進む
+    success_url = reverse_lazy('foodrescue:myprofile')
     # 表示に使用するテンプレート
     template_name = 'accounts/signup.html'
 

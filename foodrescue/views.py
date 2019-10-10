@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth import login, authenticate #ログイン関係
 from django.views.generic import CreateView
-
+#　プロフィール登録関係
 from foodrescue.models import Member
 from .forms import FoodrescueForm
 
@@ -19,15 +19,40 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from .forms import ContactForm
-# 0915お問い合わせフォーム作成#
 
-#myprofileでの登録画面
+# 1010プロフィール画像アップロード
+from .forms import PhotoForm
+from .models import Photo
+
+
+
+def index(request):
+    context = {
+        'photos': Photo.objects.all(),
+        }
+
+def photoupload(req):
+    if req.method == 'GET':
+        return render(req, 'photoupload.html', {
+            'form': PhotoForm(),
+            })
+    elif req.method == 'POST':
+        form = PhotoForm(req.POST, req.FILES)
+        if not form.is_valid():
+            raise ValueError('invalid form')
+
+        photo = Photo()
+        photo.image = form.cleaned_data['image']
+        photo.save()
+
+    return redirect('/')
+
+# myprofileでの登録画面
 def myprofile(request):
     if request.method == 'POST':
         obj = Member()
         member = FoodrescueForm(request.POST, instance=obj)
         member.save()
-        return render("foodrescue/index.html")
         return redirect('/')
 
     else:

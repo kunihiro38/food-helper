@@ -4,7 +4,6 @@
 
 from django import forms
 from .models import Member
-from foodrescue.models import Member
 
 # お問い合わせフォーム専用
 from django.conf import settings
@@ -12,11 +11,28 @@ from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
 
 
+class PhotoForm(forms.Form):
+    image = forms.ImageField()
+
 class FoodrescueForm(forms.ModelForm):
     class Meta:
         model = Member
-        fields = ['name', 'gender', 'age', 'zip_code', 'address1', 'address2', 'self_introduction',
-                  'favorite_store1', 'favorite_store2', 'favorite_store3', 'created_at', 'updated_at', 'last_login']
+        fields = ('name',
+                  'auth_User',
+                  'gender',
+                  'age',
+                  'zip_code',
+                  'address1',
+                  'address2',
+                  'self_introduction',
+                  'favorite_store1',
+                  'favorite_store2',
+                  'favorite_store3',
+                  'created_at',
+                  'updated_at',
+                  'last_login',
+                  )
+
 
 
 
@@ -56,3 +72,5 @@ class ContactForm(forms.Form):
             send_mail(subject, message, from_email, recipient_list)
         except BadHeaderError:
             return HttpResponse("無効なヘッダが検出されました。")
+
+

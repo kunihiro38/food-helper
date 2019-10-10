@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'foodrescue',
     'api',
+    'media',
 ]
 
 MIDDLEWARE = [
@@ -156,3 +157,8 @@ STATICFILES_DIR = [
 LOGIN_REDIRECT_URL = '/'
 
 # AUTH_USER_MODEL = 'accounts.CustomUser' #1004 about_sns_api_login
+
+# 1010プロフィールの画像のアップロード用
+STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

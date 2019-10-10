@@ -23,4 +23,5 @@ urlpatterns = [
     path('zoomimage', views.zoomimage, name='zoomimage'),
     path('myprofile', views.myprofile, name='myprofile'),
     path('guide', views.guide, name='guide'),
+    path('photoupload', views.photoupload, name='photoupload'),
     ]

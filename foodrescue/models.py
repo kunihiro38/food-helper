@@ -27,7 +27,8 @@ class Member(models.Model):
     """
 
     # email = models.EmailField(label=('メールアドレス'), required=True, help_text=("Required."))
-    authUser = models.IntegerField(default=0)
+    auth_User = models.CharField(max_length=40)
+
     GENDER_CHOICES = (
         (1, '男'),
         (2, '女'),
@@ -68,15 +69,11 @@ class Member(models.Model):
     自己紹介は本当にChar型の200長で大丈夫？
     """
     self_introduction = models.CharField(verbose_name='自己紹介', max_length=200, null=True)
-    # お気に入り店舗1 プルダウンセレクトしたい
-    """
-    このようにデータを持たせると、店舗名が変わったときや閉店になったときなどに苦労しない？大丈夫？
-
-    """
+    # お気に入り店舗1 プルダウンセレクト予定
     favorite_store1 = models.CharField(verbose_name='お気に入り店舗1', max_length=200, null=True)
-    # お気に入り店舗2　プルダウンセレクトしたい
+    # お気に入り店舗2　プルダウンセレクト予定
     favorite_store2 = models.CharField(verbose_name='お気に入り店舗2', max_length=200, null=True)
-    # お気に入り店舗1 プルダウンセレクトしたい
+    # お気に入り店舗3 プルダウンセレクト予定
     favorite_store3 = models.CharField(verbose_name='お気に入り店舗3', max_length=200, null=True)
     # 参加日時
     created_at = models.DateTimeField(verbose_name='登録日時', default=datetime.now())
@@ -88,14 +85,5 @@ class Member(models.Model):
     def __str__(self):
         return self.name
 
-
-class User(models.Model):
-    username = models.CharField(max_length=100)
-    password1 = models.CharField(max_length=100)
-    password2 = models.CharField(max_length=100)
-#     def __str__(self): #これがないとmigrateした時にデータベースが作成されない!!!⇨0914いや、全く関係なかったこれ。
-#         return '&lt;User:id =' + str(self.id) + self.username + ')&gt;'
-#
-#     def __str__(self): #これがないとmigrateした時にデータベースが作成されない!!!
-#         return '&lt;Friend:id =' + str(self.id) + ',' + self.name + '(' + str(self.age) + ')&gt;'#     &lt;や&gt;はタグなどに使われる開始（<）終了（>)タグを意味する。
-# &lt;や&gt;はタグなどに使われる開始（<）終了（>)タグを意味する。
+class Photo(models.Model):
+    image = models.ImageField(upload_to='images/', verbose_name='画像',)
