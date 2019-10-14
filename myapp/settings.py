@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'foodrescue',
     'api',
     'media',
+    'social_django', # 10/11 social-login専用　追記
 ]
 
 MIDDLEWARE = [
@@ -80,10 +82,26 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends', # 10/11 social-login専用　追記
+                'social_django.context_processors.login_redirect' ,# 10/11 social-login専用　追記
             ],
         },
     },
 ]
+
+# 10/11 追記
+AUTHENTICATION_BACKENDS = (
+ 'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+ 'social_core.backends.google.GoogleOpenId',  # for Google authentication
+ 'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+ 'social_core.backends.github.GithubOAuth2',  # for Github authentication
+ 'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
+
+ 'django.contrib.auth.backends.ModelBackend',
+)
+
+
+
 
 WSGI_APPLICATION = 'myapp.wsgi.application'
 
@@ -156,9 +174,11 @@ STATICFILES_DIR = [
 # Login後のリダイレクト
 LOGIN_REDIRECT_URL = '/'
 
-# AUTH_USER_MODEL = 'accounts.CustomUser' #1004 about_sns_api_login
 
 # 1010プロフィールの画像のアップロード用
-STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# API Kye
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '' # client Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' # Secret Key

@@ -27,15 +27,15 @@ from .models import Photo
 
 
 def index(request):
-    context = {
-        'photos': Photo.objects.all(),
-        }
+    context = {'photos': Photo.objects.all()}
+    return render(request,'index.html', context)
+
 
 def photoupload(req):
     if req.method == 'GET':
         return render(req, 'photoupload.html', {
             'form': PhotoForm(),
-            })
+    })
     elif req.method == 'POST':
         form = PhotoForm(req.POST, req.FILES)
         if not form.is_valid():
@@ -45,7 +45,7 @@ def photoupload(req):
         photo.image = form.cleaned_data['image']
         photo.save()
 
-    return redirect('/')
+        return redirect('/')
 
 # myprofileでの登録画面
 def myprofile(request):
@@ -59,8 +59,7 @@ def myprofile(request):
         form = FoodrescueForm()
         return render(request, 'myprofile.html', {'form':form})
 
-def index(request):
-    return render(request,'index.html')
+
 
 def registration(request): # registration関数
     return render(request, 'registration.html') # welcome.htmlを返す
@@ -69,13 +68,13 @@ def entry(request): # registration関数
     return render(request, 'entry.html') # entry.htmlを返す
 
 def loginscreen(request): # loginscreen関数
-    return render(request,'loginscreen.html') # loginscreen.htmlを返す
+    return render(request, 'loginscreen.html') # loginscreen.htmlを返す
 
 def operation(request): # operation関数
     return render(request,'operation.html') # operation.htmlを返す
 
 def service(request): # bservice関数
-    return render(request,'service.html') # service.htmlを返す
+    return render(request, 'service.html') # service.htmlを返す
 
 def privacy(request): # bservice関数
     return render(request,'privacy.html') # privacy.htmlを返す
@@ -84,10 +83,10 @@ def required(request): # bservice関数
     return render(request,'required.html') # required.htmlを返す
 
 def mainvisual(request): # bservice関数
-    return render(request,'mainvisual.html') # mainvisual.htmlを返す
+    return render(request, 'mainvisual.html') # mainvisual.htmlを返す
 
 def search(request): # bservice関数
-    return render(request,'search.html') # searrch.htmlを返す
+    return render(request, 'search.html') # searrch.htmlを返す
 
 def imagelist(request): # bservice関数
     return render(request, 'imagelist.html') # imagelist.htmlを返す
@@ -99,7 +98,10 @@ def editprofile(request): # bservice関数
     return render(request, 'editprofile.html') # myprofile.htmlを返す
 
 def guide(request): # bservice関数
-    return render(request,'guide.html') # guide.htmlを返す
+    return render(request, 'guide.html') # guide.htmlを返す
+
+def home(request):
+    return render(request, 'home.html') #10/11　google認証専用
 
 
 # 0915お問い合わせフォーム作成#
@@ -120,3 +122,4 @@ class ContactResultView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['success'] = "お問い合わせは正常に送信されました。"
         return context
+

@@ -1,3 +1,4 @@
+
 #coding:utf-8
 # フォームは、1.ユーザーの入力データを保持。2.入力データのバリデーション（妥当性チェック）を行い、妥当性検証済みのデータやエラーメッセージを保持する
 # classに記載した内容が、html表示時に反映される!!
@@ -32,9 +33,6 @@ class FoodrescueForm(forms.ModelForm):
                   'updated_at',
                   'last_login',
                   )
-
-
-
 
 # お問い合わせフォーム作成#
 class ContactForm(forms.Form):

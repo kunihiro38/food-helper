@@ -24,4 +24,6 @@ urlpatterns = [
     path('myprofile', views.myprofile, name='myprofile'),
     path('guide', views.guide, name='guide'),
     path('photoupload', views.photoupload, name='photoupload'),
+    path('home', views.home, name='home'),
+
     ]
