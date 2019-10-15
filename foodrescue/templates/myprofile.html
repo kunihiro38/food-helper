@@ -1,12 +1,47 @@
 
-
-          <body>
-
               <h1>{{ title }}</h1>
-              <table>
+
+              {% block content %}
+              <h1>プロフィール登録</h1>
+              <table class="table">
+
                   <form action="{% url 'foodrescue:myprofile' %}" method="post">
+
+                  <!-- <div class="field">
+                    {{ form.name}}
+ 参考　https://narito.ninja/blog/detail/98/
+                  </div> -->
+
                       {% csrf_token %}
-                      {{ form.as_p }}
-                      <input type="submit" value="click">
+                      <tbody>
+                        <tr>
+                          <th>名前</th>
+                          <td>{{ form.name }}</td>
+                        </tr>
+                        <tr>
+                          <th>性別</th>
+                          <td>{{ form.gender }}</td>
+                        </tr>
+                        <tr>
+                          <th>年齢</th>
+                          <td>{{ form.age }}</td>
+                        </tr>
+                        <tr>
+                          <th>都道府県</th>
+                          <td>{{ form.address1 }}</td>
+                        </tr>
+                        <tr>
+                          <th>自己紹介</th>
+                          <td>{{ form.self_introduction }}</td>
+                        </tr>
+                      </tbody>
+                      <tr>
+                        <td><input type="submit" class="btn btn-primary" value="Submit">
+                          <input type="reset" class="btn btn-secondary" value="Reset">
+                        </td>
+                      </tr>
+                      <td></td>
+
                   </form>
-              </table>
+                </table>
+              {% endblock %}

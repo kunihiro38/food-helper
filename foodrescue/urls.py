@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from .views import ContactFormView, ContactResultView #0915Dnagoでお問い合わせフォームを作成する
+
 app_name = "foodrescue"
 
 # 基本構成pathの第一引数が、URLの表示になる
@@ -24,6 +25,4 @@ urlpatterns = [
     path('myprofile', views.myprofile, name='myprofile'),
     path('guide', views.guide, name='guide'),
     path('photoupload', views.photoupload, name='photoupload'),
-    path('home', views.home, name='home'),
-
     ]

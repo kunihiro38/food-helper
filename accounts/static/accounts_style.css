@@ -367,18 +367,14 @@ header .site-name a {
   opacity:1;
 }
 
-.facebook{
-  background-color: #3b5998;
-  padding:10px 40px;
+.google{
+  /* background-color: #3b5998; */
+  background-color: #FF5733;
+  padding:10px 45px;
   margin:20px 0px;
 }
 
-.twitter{
-  background-color: #55acee;
-  padding:10px 45px;
-  margin-top:5px;
-  margin-bottom: 10px;
-}
+
 
 
 .new-register{

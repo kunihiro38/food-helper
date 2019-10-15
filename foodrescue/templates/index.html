@@ -20,8 +20,8 @@
 
         <div class="header-right">
             {%if user.id %}
-            <p>ログインしました</p>
-            <p>こんにちは,{{user.username}}さん</p>
+            <div class="after-login">プロフィール変更する</div>
+            <div class="after-login">{{user.username}}さん</div>
             <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
             {% else %}
             <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>

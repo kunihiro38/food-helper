@@ -25,6 +25,20 @@ header {
   padding:0px 18px;
 }
 
+/* ログイン後のレイアウト↓↓ */
+
+.after-login{
+    color: black;
+    font: bold;
+    display: inline-block;
+    padding:6px 24px;
+    margin: 0 0 0.8em;
+    position: relative;
+    letter-spacing:0.1em;
+  }
+
+
+/* ログイン後のレイアウト/ログアウトする↓↓ */
 .header-right a.my-parts {
   color: #239b76;
   display: inline-block;
@@ -54,6 +68,8 @@ header {
   color: white;
   /* hover後の文字色 */
 }
+
+
 
 .container{
   width: 1170px;

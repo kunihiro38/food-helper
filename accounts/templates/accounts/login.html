@@ -26,8 +26,7 @@
         <input type="hidden" name="next" value="{{ next }}"/>
     </form>
     <div class="btn-wrapper">
-      <a href="#" class="btn facebook" style="text-decoration:none;"><span class="fa fa-facebook"></span>Facebookでログイン</a><br>
-        <a href="#" class="btn twitter" style="text-decoration:none;"><span class="fa fa-twitter"></span>Twitterでログイン</a>
+      <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn google" style="text-decoration:none;"><span class="fa fa-google"></span>Googleでログイン</a><br>
 
     </div>
     <hr width="40%" noshade class="border">

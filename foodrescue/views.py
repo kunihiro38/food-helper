@@ -25,7 +25,6 @@ from .forms import PhotoForm
 from .models import Photo
 
 
-
 def index(request):
     context = {'photos': Photo.objects.all()}
     return render(request,'index.html', context)
@@ -99,10 +98,6 @@ def editprofile(request): # bservice関数
 
 def guide(request): # bservice関数
     return render(request, 'guide.html') # guide.htmlを返す
-
-def home(request):
-    return render(request, 'home.html') #10/11　google認証専用
-
 
 # 0915お問い合わせフォーム作成#
 class ContactFormView(FormView):
