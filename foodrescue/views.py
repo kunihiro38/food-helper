@@ -23,6 +23,7 @@ from .forms import ContactForm
 # 1010プロフィール画像アップロード
 from .forms import PhotoForm
 from .models import Photo
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -46,11 +47,14 @@ def photoupload(req):
 
         return redirect('/')
 
-# myprofileでの登録画面
+# ログインしたユーザーのみに閲覧制限できるデコレータ
+@login_required
 def myprofile(request):
     if request.method == 'POST':
-        obj = Member()
-        member = FoodrescueForm(request.POST, instance=obj)
+        # obj = Member()
+        # member = FoodrescueForm(request.POST, instance=obj)
+
+        member = FoodrescueForm(request.POST)
         member.save()
         return redirect('/')
 
@@ -58,13 +62,8 @@ def myprofile(request):
         form = FoodrescueForm()
         return render(request, 'myprofile.html', {'form':form})
 
-
-
 def registration(request): # registration関数
     return render(request, 'registration.html') # welcome.htmlを返す
-
-def entry(request): # registration関数
-    return render(request, 'entry.html') # entry.htmlを返す
 
 def loginscreen(request): # loginscreen関数
     return render(request, 'loginscreen.html') # loginscreen.htmlを返す
@@ -81,6 +80,8 @@ def privacy(request): # bservice関数
 def required(request): # bservice関数
     return render(request,'required.html') # required.htmlを返す
 
+# ログインしたユーザーのみに閲覧制限できるデコレータ
+@login_required
 def mainvisual(request): # bservice関数
     return render(request, 'mainvisual.html') # mainvisual.htmlを返す
 
