@@ -52,7 +52,7 @@ def photoupload(req):
 def myprofile(request):
     if request.method == 'POST':
         # obj = Member()
-        # member = FoodrescueForm(request.POST, instance=obj)
+        member = FoodrescueForm(request.POST)
 
         member = FoodrescueForm(request.POST)
         member.save()
