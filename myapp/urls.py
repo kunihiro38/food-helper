@@ -1,9 +1,29 @@
+
 from django.contrib import admin
 from django.urls import include, path
 # 1004以下を新しく定義
 from django.conf import settings
 from django.conf.urls.static import static
+# 1016 GoogleMap専用
+from gmap.models import Store
+from rest_framework import routers, serializers, viewsets
 
+
+# 1016　GoogleMAP専用
+# モデルをJSONにマッピング（変換）するシリアライザ
+class StoreSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Store
+        fields = ('name', 'address', 'bussiness_hours', 'lat', 'lng')
+
+class StoreViewSet(viewsets.ModelViewSet):
+    queryset = Store.objects.all()
+    serializer_class = StoreSerializer
+
+# 参考 https://www.django-rest-framework.org/api-guide/routers/
+router = routers.DefaultRouter()
+# register 引数2つ(prefix & the viewset class
+router.register(r'store', StoreViewSet)
 
 
 urlpatterns = [
@@ -12,10 +32,11 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path("", include('foodrescue.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
-
+    path('gmap/', include('gmap.urls')),
+    path('gmap/api/', include('router.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     ]
 
 # path('web/', include('django.contrib.auth.urls')), ＃これいる？
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

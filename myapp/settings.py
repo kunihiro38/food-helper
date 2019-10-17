@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'api',
     'media',
     'social_django',
+    'gmap.apps.GmapConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +105,14 @@ AUTHENTICATION_BACKENDS = (
   'django.contrib.auth.backends.ModelBackend',
  )
 
+# 1016　GoogleMap記述
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 
 WSGI_APPLICATION = 'myapp.wsgi.application'
@@ -177,13 +187,12 @@ STATICFILES_DIR = [
 LOGIN_REDIRECT_URL = '/'
 
 
-
 # 1010プロフィールの画像のアップロード用
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # API
 # client Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '385759056644-ar4bde30fmgqr6ar3p7vvmas0tju415q.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
 # Secret Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Bif9eHg7SvKn3QG5j7ohtxCL'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
