@@ -10,7 +10,6 @@ urlpatterns = [
 
     path("", views.index, name="index"),
     path('index', views.index, name='index'),
-    path('entry', views.entry, name='entry'),
     path('loginscreen', views.loginscreen, name='loginscreen'),
     path('operation', views.operation, name='operation'),
     path("service", views.service, name='service'),
