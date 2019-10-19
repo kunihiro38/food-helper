@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate #ログイン関係
 from django.views.generic import CreateView
 #　プロフィール登録関係
-from foodrescue.models import Member
+from .models import Member as m
 from .forms import FoodrescueForm
 
 # 0915お問い合わせフォーム作成#
@@ -24,6 +24,10 @@ from .forms import ContactForm
 from .forms import PhotoForm
 from .models import Photo
 from django.contrib.auth.decorators import login_required
+
+# 1018追記 Gmap用？
+from django.http import HttpResponse
+from django.template import loader
 
 
 def index(request):
@@ -48,13 +52,17 @@ def photoupload(req):
         return redirect('/')
 
 # ログインしたユーザーのみに閲覧制限できるデコレータ
-@login_required
+# @login_required
 def myprofile(request):
     if request.method == 'POST':
-        # obj = Member()
-        member = FoodrescueForm(request.POST)
-
-        member = FoodrescueForm(request.POST)
+        member = m(
+            name=request.POST['name'],
+            auth_User=request.user,
+            gender=request.POST['gender'],
+            age=request.POST['age'],
+            address1=request.POST['address1'],
+            self_introduction=request.POST['self_introduction'],
+            )
         member.save()
         return redirect('/')
 
@@ -65,8 +73,6 @@ def myprofile(request):
 def registration(request): # registration関数
     return render(request, 'registration.html') # welcome.htmlを返す
 
-def loginscreen(request): # loginscreen関数
-    return render(request, 'loginscreen.html') # loginscreen.htmlを返す
 
 def operation(request): # operation関数
     return render(request,'operation.html') # operation.htmlを返す
@@ -119,3 +125,8 @@ class ContactResultView(TemplateView):
         context['success'] = "お問い合わせは正常に送信されました。"
         return context
 
+@login_required
+def main(request):
+    template = loader.get_template('gmap/main.html')
+    context = {}
+    return HttpResponse(template.render(context, request))

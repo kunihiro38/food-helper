@@ -5,10 +5,8 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 # 1016 GoogleMap専用
-from gmap.models import Store
+from foodrescue.models import Store
 from rest_framework import routers, serializers, viewsets
-
-
 # 1016　GoogleMAP専用
 # モデルをJSONにマッピング（変換）するシリアライザ
 class StoreSerializer(serializers.HyperlinkedModelSerializer):
@@ -25,17 +23,18 @@ router = routers.DefaultRouter()
 # register 引数2つ(prefix & the viewset class
 router.register(r'store', StoreViewSet)
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path("", include('foodrescue.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('gmap/', include('gmap.urls')),
-    path('gmap/api/', include('router.urls')),
+    path('gmap/api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     ]
+
+# 1018 path(gmap/api/ ⇨　django　の仕組み上第一引数のURLにアクセス時に、第二引数へ飛ぶ
+# 1018 path(api-auth) ⇨　gmap表示状のスーパーの登録・管理サイト
 
 # path('web/', include('django.contrib.auth.urls')), ＃これいる？
 if settings.DEBUG:

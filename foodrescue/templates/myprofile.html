@@ -1,47 +1,92 @@
 
-              <h1>{{ title }}</h1>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="{% static 'css/myprofile.css' %}" rel="stylesheet">
+    <title>プロフィール登録</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
 
-              {% block content %}
-              <h1>プロフィール登録</h1>
-              <table class="table">
 
-                  <form action="{% url 'foodrescue:myprofile' %}" method="post">
 
-                  <!-- <div class="field">
-                    {{ form.name}}
- 参考　https://narito.ninja/blog/detail/98/
-                  </div> -->
+<body id="a001">
+  <header>
+  <div class="header">
+    <div class="header-left">
+      <a href="{% url 'foodrescue:index' %}">
+        <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
+      </a>
+    </div>
 
-                      {% csrf_token %}
-                      <tbody>
-                        <tr>
-                          <th>名前</th>
-                          <td>{{ form.name }}</td>
-                        </tr>
-                        <tr>
-                          <th>性別</th>
-                          <td>{{ form.gender }}</td>
-                        </tr>
-                        <tr>
-                          <th>年齢</th>
-                          <td>{{ form.age }}</td>
-                        </tr>
-                        <tr>
-                          <th>都道府県</th>
-                          <td>{{ form.address1 }}</td>
-                        </tr>
-                        <tr>
-                          <th>自己紹介</th>
-                          <td>{{ form.self_introduction }}</td>
-                        </tr>
-                      </tbody>
-                      <tr>
-                        <td><input type="submit" class="btn btn-primary" value="Submit">
-                          <input type="reset" class="btn btn-secondary" value="Reset">
-                        </td>
-                      </tr>
-                      <td></td>
+    <div class="header-right">
+        {%if user.id %}
+        <div class="after-login">プロフィール変更する</div>
+        <div class="after-login">{{user.username}}さん</div>
+        <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
+        {% else %}
+        <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+        <a href="{% url 'accounts:login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+        {% endif %}
+    </div>
 
-                  </form>
-                </table>
-              {% endblock %}
+  </div>
+  </header>
+
+
+
+
+          <form action="{% url 'foodrescue:myprofile' %}" method="POST">
+              {{ form.non_field_errors }}
+              {% for field in form %}
+                  <div class="field">
+                      {{ field.label_tag }}
+                      {{ field }}
+                      {% if field.help_text %}
+                          <span class="helptext">{{ field.help_text }}</span>
+                      {% endif %}
+                      {{ field.errors }}
+                  </div>
+              {% endfor %}
+
+              <div class="field">
+                  <button type="submit">送信</button>
+              </div>
+
+              {% csrf_token %}
+          </form>
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="footer">
+                  <div class="footer-logo">
+                    <a href="{% url 'foodrescue:index' %}">
+                    <img class="footer-logo" src="{% static "images/food-helper-logo2.png" %}" ref="{% url 'foodrescue:index' %}" height="50" width="160" alt="footer-logo">
+                    </a>
+                  </div>
+                  <div class="footer-list">
+                    <ul>
+                      <li><a href="{% url 'foodrescue:guide' %}" style="text-decoration:none;">利用ガイド</a></li>
+                      <li><a href="{% url 'foodrescue:operation' %}" style="text-decoration:none;">運営</a></li>
+                      <li><a href="{% url 'foodrescue:service' %}" style="text-decoration:none;">利用規約</a></li>
+                      <li><a href="{% url 'foodrescue:privacy' %}" style="text-decoration:none;">プライバシーポリシー</a></li>
+                    	<li><a href="{% url 'foodrescue:contact_form' %}" style="text-decoration:none;">お問い合わせ</a></li>
+                    </ul>
+                  </div>
+                </div>
+                </footer>
+                <div class="copyright">
+                  <p><small>© 2019 Food helper</small></p>
+                </div>
+              </body>
+          </html>

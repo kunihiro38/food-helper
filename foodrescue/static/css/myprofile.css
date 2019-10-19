@@ -1,5 +1,85 @@
-https://narito.ninja/blog/detail/98/
+/* https://narito.ninja/blog/detail/98/ */
 参考
+
+body {
+  font-family: "Avenir Next";
+}
+li {
+  list-style: none;
+}
+
+header {
+  background-color:white;
+  height: 50px;
+  width: 100%;
+  position:fixed; */
+  top:0;
+  z-index:10;
+  display: table;
+  margin: 0 0 0px;
+  padding: 2px 0;
+  border-bottom: 1px solid #cccccc;
+}
+.header-logo {
+  float: left;
+}
+.header-right {
+  float: right;
+  padding:0px 18px;
+}
+
+/* ログイン後のレイアウト↓↓ */
+
+.after-login{
+    color: black;
+    font: bold;
+    display: inline-block;
+    padding:6px 24px;
+    margin: 0 0 0.8em;
+    position: relative;
+    letter-spacing:0.1em;
+  }
+
+
+/* ログイン後のレイアウト/ログアウトする↓↓ */
+.header-right a.my-parts {
+  color: #239b76;
+  display: inline-block;
+  padding:6px 24px;
+  margin: 0 0 0.8em;
+  background: #fff;
+  border: .1000em solid #239b76;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  letter-spacing:0.1em;
+}
+
+.header-right a.my-parts::after {
+  position: absolute;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  top: 50%;
+  right: .4em;
+  left: auto;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+
+.header-right a.my-parts:hover {
+  background: #239b76;
+  color: white;
+  /* hover後の文字色 */
+}
+
+
+
+
+
+
+
+
+
 .errorlist {
     margin: 0;
     padding: 0;
@@ -8,9 +88,12 @@ https://narito.ninja/blog/detail/98/
 }
 
 div.field {
-    margin-top: 30px;
-}
+    /* margin-top: 30px; */
+    width: 450px;     /* 幅指定 */
+    margin:  30px auto;
 
+}
+/* helptextのフォント操作 */
 div.field > span.helptext {
     font-size: 14px;
     color: #999;
@@ -20,10 +103,67 @@ div.field > label {
     display: block;
 }
 
+/* プルダウンでの選択箇所s */
 div.field > input, div.field > textarea, div.field > select, div.field > button {
     width: 100%;
     padding: 6px 12px;
     box-sizing: border-box;
     border-radius: 4px;
     border: solid 1px #999;
+    font-size: 14px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .footer {
+    background-color: #239b76;
+    color: #fff;
+    height: 50px;
+    padding-bottom: 20px;
+  }
+  .footer a{
+    color:white;
+    position: relative;
+    display:inline-block;
+    text-decoration:none;
+  }
+  .footer a::after{
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    visibility: hidden;
+  }
+  .footer a:hover::after {
+    bottom: 2px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .footer-logo {
+    float: left;
+    margin:5px 2px;
+  }
+
+  .footer-list li{
+    float: right;
+    padding: 21px 8px;
+    margin-bottom:10px;
+  }
+
+  .copyright p{
+    text-align: center;
   }

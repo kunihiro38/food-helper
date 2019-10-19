@@ -5,12 +5,10 @@ from .views import ContactFormView, ContactResultView #0915Dnagoでお問い合�
 
 app_name = "foodrescue"
 
-# 基本構成pathの第一引数が、URLの表示になる
+# 基本構成pathの第一引数が、URLの表示になる=アクセスするとこと。第二引数がプログラムがみに行く場所
 urlpatterns = [
-
     path("", views.index, name="index"),
     path('index', views.index, name='index'),
-    path('loginscreen', views.loginscreen, name='loginscreen'),
     path('operation', views.operation, name='operation'),
     path("service", views.service, name='service'),
     path('privacy', views.privacy, name='privacy'),
@@ -24,4 +22,5 @@ urlpatterns = [
     path('myprofile', views.myprofile, name='myprofile'),
     path('guide', views.guide, name='guide'),
     path('photoupload', views.photoupload, name='photoupload'),
+    path('gmap/', views.main, name='main'),
     ]

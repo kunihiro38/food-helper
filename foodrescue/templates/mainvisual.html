@@ -4,24 +4,76 @@
     <head>
       <!-- head内は基本的な情報の部分なのでbody以下の見た目の部分に反映されない -->
       <meta charset="utf-8">
-		  <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-      <title>フードヘルパー|メイン画面</title>
+		  <link rel="stylesheet" href="{% static "css/toppagestyle.css" %}"/>
+      <title>メイン画面</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     </head>
+    <body id="a001">
+      <header>
+      <div class="header">
+        <div class="header-left">
+          <a href="{% url 'foodrescue:index' %}">
+            <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
+          </a>
+        </div>
 
-    <body>
-        <h1>これが本当のメイン画面や！</h1>
+        <div class="header-right">
+            {%if user.id %}
+            <div class="after-login">プロフィール変更する</div>
+            <div class="after-login">{{user.username}}さん</div>
+            <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
+            {% else %}
+            <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+            <a href="{% url 'accounts:login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+            {% endif %}
+        </div>
+      </div>
+      </header>
 
-		<img src="{% static "images/qqqq2.jpg" %}" alt="">
-
-        <h2>知りたいか？この世の全てを</h2>
-   		<p><a href="{% url 'foodrescue:index' %}">トップページへ戻る</a></p>
-        <p><a href="{% url 'foodrescue:search' %}">MAPから探したいかたはこちらからあ！</a></p>
-        <p><a href="{% url 'foodrescue:operation' %}">運営</a></p>
-        <p><a href="{% url 'foodrescue:service' %}">利用規約</a></p>
-		<p><a href="{% url 'foodrescue:privacy' %}">プライバシーポリシー</a></p>
-		<p><a href="{% url 'foodrescue:contact_form' %}">お問い合わせ</a></p>
 
 
-    </body>
 
-</html>
+<body>
+
+      <div class="top-wrapper">
+        <h1>ログインした人のみ閲覧できるサイトになります</h1>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="footer">
+              <div class="footer-logo">
+                <a href="{% url 'foodrescue:index' %}">
+                <img class="footer-logo" src="{% static "images/food-helper-logo2.png" %}" ref="{% url 'foodrescue:index' %}" height="50" width="160" alt="footer-logo">
+                </a>
+              </div>
+              <div class="footer-list">
+                <ul>
+                  <li><a href="{% url 'foodrescue:guide' %}" style="text-decoration:none;">利用ガイド</a></li>
+                  <li><a href="{% url 'foodrescue:operation' %}" style="text-decoration:none;">運営</a></li>
+                  <li><a href="{% url 'foodrescue:service' %}" style="text-decoration:none;">利用規約</a></li>
+                  <li><a href="{% url 'foodrescue:privacy' %}" style="text-decoration:none;">プライバシーポリシー</a></li>
+                	<li><a href="{% url 'foodrescue:contact_form' %}" style="text-decoration:none;">お問い合わせ</a></li>
+                </ul>
+              </div>
+            </div>
+            </footer>
+            <div class="copyright">
+
+
+              <p><small>© 2019 Food helper</small></p>
+
+            </div>
+          </body>
+      </html>

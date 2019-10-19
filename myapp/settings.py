@@ -52,11 +52,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'foodrescue',
-    'api',
+    'foodrescue.apps.FoodrescueConfig', # 1018追記
+    'api.apps.ApiConfig', # 1018追記
     'media',
     'social_django',
-    'gmap.apps.GmapConfig',
     'rest_framework',
 ]
 
