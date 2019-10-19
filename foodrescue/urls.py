@@ -21,6 +21,6 @@ urlpatterns = [
     path('zoomimage', views.zoomimage, name='zoomimage'),
     path('myprofile', views.myprofile, name='myprofile'),
     path('guide', views.guide, name='guide'),
-    path('photoupload', views.photoupload, name='photoupload'),
+    path('main_share', views.photoupload, name='main_share'),
     path('gmap/', views.main, name='main'),
     ]

@@ -1,0 +1,14 @@
+<form action="{% url 'foodrescue:main_share' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="投稿">
+</form>
+
+
+<h1>テスト</h1>
+            {% for p in photos %}
+                <div>
+                    <img src="{{ p.image.url }}" />
+                </div>
+            {% endfor %}
+<h1>テスト２</h1>

@@ -18,6 +18,8 @@ class LoginView(AuthLoginView):
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     # 新規会員登録完了⇨プロフィール入力へ進む
+    # reverse_lazy()はreverse()の遅延評価版で、URLConfがロードされる前にURLの逆引きをしたい時に使う。
+    # クラスベース汎用ビューではreverse_lazy()を使う。
     success_url = reverse_lazy('foodrescue:myprofile')
     # 表示に使用するテンプレート
     template_name = 'accounts/signup.html'
@@ -30,7 +32,8 @@ class LogoutView(AuthLogoutView):
 class UserUpdateView(UpdateView):
     model = Member
 #     ここどうしたら良いかわからん
-    fields = ('name')
+    fields = ('name', 'gender', 'age', 'address1', 'self_introduction' )
+    # テンプレートファイル名を指定
     template_name = 'accounts/user_form.html'
     # 正常に処理が完了した際のリダイレクト先
     success_url = reverse_lazy('/')

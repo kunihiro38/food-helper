@@ -29,27 +29,31 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import loader
 
-
 def index(request):
     context = {'photos': Photo.objects.all()}
     return render(request,'index.html', context)
 
 
-def photoupload(req):
-    if req.method == 'GET':
-        return render(req, 'photoupload.html', {
+def photoupload(request):
+    if request.method == 'GET':
+        return render(request, 'main_share.html', {
             'form': PhotoForm(),
     })
-    elif req.method == 'POST':
-        form = PhotoForm(req.POST, req.FILES)
+    elif request.method == 'POST':
+        form = PhotoForm(request.POST, request.FILES)
         if not form.is_valid():
             raise ValueError('invalid form')
 
         photo = Photo()
+        # 画像の登録
         photo.image = form.cleaned_data['image']
+        # store_id　の登録
+        photo.store_id = request.POST['store_id']
         photo.save()
-
-        return redirect('/')
+#         return redirect('/')
+        return redirect(request, 'main_share.html')
+        # これだと、投稿後のアクションのままの画面で残る・・・、つまり再度投稿するには新たなHttpRequestをする必要がある。
+        # return render(request, 'main_share.html')
 
 # ログインしたユーザーのみに閲覧制限できるデコレータ
 # @login_required

@@ -3,7 +3,9 @@
 from django.db import models
 from django.utils import timezone
 from datetime import datetime
-# Create your models here.
+# class Photo　の store_id専用
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 class Member(models.Model):
     """会員モデル"""
@@ -34,7 +36,15 @@ class Member(models.Model):
     def __str__(self):
         return self.name
 
+# main画面の画像投稿機能
 class Photo(models.Model):
+    # blank　と　null に関しては、何も記載をしないと両方False登録になる。この場合、投稿時にフィールドの入力は必須で、
+    # データベースに保存される値も空になってはいけない。
+    # 店舗ID 合計5店舗　name と紐づく1.マルエツ 2.西友 3.オーケー 4.成城石井 5.北野エース
+    store_id = models.IntegerField(verbose_name='店舗名',
+                                    validators=[MinValueValidator(1),
+                                                 MaxValueValidator(5)],
+                                     blank=False, null=False,)
     image = models.ImageField(upload_to='images/', verbose_name='画像',)
 
 # 1018店舗登録
@@ -50,4 +60,7 @@ class Store(models.Model):
     class Meta:
         verbose_name = "店名"
         verbose_name_plural = '店名'
+
+
+
 

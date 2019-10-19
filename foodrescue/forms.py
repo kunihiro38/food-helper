@@ -13,6 +13,20 @@ from django.http import HttpResponse
 
 
 class PhotoForm(forms.Form):
+    STORE_CHOICES = (
+    (1, 'マルエツ調布店'),
+    (2, '西友調布店'),
+    (3, 'オーケー調布店'),
+    (4, '成城石井　トリエ京王調布店'),
+    (5, '北野エース調布　パルコ店'),
+    )
+    store_id = forms.ChoiceField(
+    label='店舗',
+    widget=forms.Select,
+    choices=STORE_CHOICES,
+    required=True,
+    )
+    #　投稿画像
     image = forms.ImageField()
 
 # class FoodrescueForm(forms.ModelForm): # modelformだと簡単だが応用が効きにくい
@@ -79,7 +93,6 @@ class FoodrescueForm(forms.Form):
     required=False,
 #     help_text='※任意'
     )
-
 
 # お問い合わせフォーム作成#
 class ContactForm(forms.Form):
