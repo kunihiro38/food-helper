@@ -33,12 +33,13 @@ def index(request):
     context = {'photos': Photo.objects.all()}
     return render(request,'index.html', context)
 
-
 def photoupload(request):
+    # GETのときにはformをキーにして辞書型でPhotoForm()を返している
     if request.method == 'GET':
         return render(request, 'main_share.html', {
             'form': PhotoForm(),
     })
+    # POSTで画像を投稿したときには返してあげていません。なので、いったん画像を投稿するとフォームが消えてしまう
     elif request.method == 'POST':
         form = PhotoForm(request.POST, request.FILES)
         if not form.is_valid():
@@ -50,10 +51,12 @@ def photoupload(request):
         # store_id　の登録
         photo.store_id = request.POST['store_id']
         photo.save()
+        context = {'photos': Photo.objects.all()}
 #         return redirect('/')
-        return redirect(request, 'main_share.html')
-        # これだと、投稿後のアクションのままの画面で残る・・・、つまり再度投稿するには新たなHttpRequestをする必要がある。
-        # return render(request, 'main_share.html')
+#         return redirect(request, 'main_share.html')
+        #
+        #　renderの第３引数は、辞書型を受け取る
+        return render(request, 'main_share.html', {'form': PhotoForm()})
 
 # ログインしたユーザーのみに閲覧制限できるデコレータ
 # @login_required
@@ -77,7 +80,6 @@ def myprofile(request):
 def registration(request): # registration関数
     return render(request, 'registration.html') # welcome.htmlを返す
 
-
 def operation(request): # operation関数
     return render(request,'operation.html') # operation.htmlを返す
 
@@ -100,9 +102,6 @@ def search(request): # bservice関数
 
 def imagelist(request): # bservice関数
     return render(request, 'imagelist.html') # imagelist.htmlを返す
-
-def zoomimage(request): # bservice関数
-    return render(request, 'zoomimage.html') # imagelist.htmlを返す
 
 def editprofile(request): # bservice関数
     return render(request, 'editprofile.html') # myprofile.htmlを返す
