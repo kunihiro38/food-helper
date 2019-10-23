@@ -1,0 +1,31 @@
+/* 画像を投稿するところ */
+.top-post{
+  font-size: 20px;
+  text-align: center;
+  margin:20px auto;
+}
+
+.container {
+  background-color: white;
+  text-align: center;
+  border: #33CC00 solid 1px;
+  border-radius: 10px;
+}
+
+.inline-block-test {
+  /* inline-blockでレイアウト綺麗に並ぶ */
+  display: inline-block;
+  /* widthを指定、heightをautoにすることで、自動調整 */
+  height: auto;
+  width: 293px;
+  margin:20px;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+}
+/* // 本当はFocusでやりたいが・・・ */
+.inline-block-test:hover{
+    height:auto;
+    width:50%;
+    transition: all 0.5s ease-in-out;
+    /* outline:none; */
+}

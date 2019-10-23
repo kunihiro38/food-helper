@@ -121,6 +121,7 @@ class ContactForm(forms.Form):
 
     def send_email(self):
         subject = "お問い合わせ"
+        # cleaned_data　でフォームデータを取得
         message = self.cleaned_data['message']
         name = self.cleaned_data['name']
         email = self.cleaned_data['email']

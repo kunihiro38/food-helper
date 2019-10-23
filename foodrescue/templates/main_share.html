@@ -1,14 +1,29 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+      <!-- head内は基本的な情報の部分なのでbody以下の見た目の部分に反映されない -->
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="{% static "css/main_share.css" %}"/>
+      <title>main_share</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    </head>
+
+<body>
+<div class="top-post">
+
 <form action="{% url 'foodrescue:main_share' %}" method="POST" enctype="multipart/form-data">
+
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="投稿">
+    <input type="submit" value="投稿する!">
 </form>
+</div>
 
-
-<h1>テスト</h1>
+<div class="container">
             {% for p in photos %}
-                <div>
-                    <img src="{{ p.image.url }}" />
-                </div>
+                    <img class="inline-block-test" src="{{ p.image.url }}"/>
             {% endfor %}
-<h1>テスト２</h1>
+</div>
+</body>
+</html>

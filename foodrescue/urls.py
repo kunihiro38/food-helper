@@ -15,9 +15,8 @@ urlpatterns = [
     path('contact/', ContactFormView.as_view(), name='contact_form'),
     path('contact/result/', ContactResultView.as_view(), name='contact_result'),
     path('required', views.required, name='required'),
-    path('mainvisual', views.mainvisual, name='mainvisual'),
     path('myprofile', views.myprofile, name='myprofile'),
     path('guide', views.guide, name='guide'),
-    path('main_share', views.photoupload, name='main_share'),
-    path('gmap/', views.main, name='main'),
+    path('main_share/', views.photoupload, name='main_share'),
+    path('map/', views.map, name='map'),
     ]

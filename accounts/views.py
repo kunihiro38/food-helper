@@ -36,6 +36,6 @@ class UserUpdateView(UpdateView):
     # テンプレートファイル名を指定
     template_name = 'accounts/user_form.html'
     # 正常に処理が完了した際のリダイレクト先
-    success_url = reverse_lazy('/')
+    success_url = reverse_lazy('foodrescue:myprofile')
     def get_object(self):
         return self.request.user

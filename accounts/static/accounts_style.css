@@ -1,14 +1,17 @@
 body {
   font-family: "Avenir Next";
 }
+
 li {
   list-style: none;
 }
+
+
 header {
   background-color:white;
   height: 50px;
   width: 100%;
-  position:fixed; */
+  position:fixed;
   top:0;
   z-index:10;
   display: table;
@@ -16,13 +19,17 @@ header {
   padding: 2px 0;
   border-bottom: 1px solid #cccccc;
 }
+
 .header-logo {
   float: left;
 }
+
 .header-right {
   float: right;
   padding:0px 18px;
 }
+
+
 .btn{
   padding:8px 24px;
   color:white;
@@ -69,12 +76,6 @@ header {
 
 
 
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-}
-
  ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6 label, input, textarea, select, button {
     margin: 0;
     padding: 0;
@@ -88,6 +89,9 @@ h1, h2, h3 {
     font-size: 1.2rem;
 }
 
+.helptext{
+  width:450px;
+}
 
 /* a {
     color: #6495ed;
@@ -105,7 +109,8 @@ h1, h2, h3 {
 
 /* #ユーザー名以下の本体 */
 section {
-    margin: 60px 0px 100px 0px;
+
+    margin: 30px 0px 100px 0px;
 }
 
 /* .containerのpaddin-topで上操作！ */
@@ -162,8 +167,9 @@ header .site-name a {
 
 /* ここで真ん中のブロックの場所操作 */
 .content {
-    margin-bottom: 100px;
-    padding: 100px 8px 0px 8px;
+    padding: 100px 100px 0px 100px;
+    width: 450px;
+
 }
 
 /**
@@ -235,12 +241,19 @@ header .site-name a {
  * Create, Update
  */
  /* #ユーザー名前、パスワードの間隔調整 */
+
+/* form{
+  width: 450px;
+} */
+
+
 .common-form label {
     display: block;
+    margin-top:30px;
 }
 
 .common-form p {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 /* ユーザー名、パスワードの記入欄の調整 */
@@ -251,10 +264,9 @@ header .site-name a {
 
 .common-form textarea {
     padding: 4px;
-    width: 50%;
+    width: 0%;
     margin-bottom: 8px;
 }
-
 
 
 .common-form select {
@@ -264,13 +276,12 @@ header .site-name a {
 
 /* #登録ボタンに関して */
 .common-form .submit {
-    margin-top: 8px 0px;
+    margin-top: 30px;
     padding: 8px 86px;
     border: none;
     color: #ffffff;
     cursor: pointer;
     text-align: center;
-    /* text-decoration: none; */
     display: inline-block;
     background-color: #4CAF50;
     border-radius: 10px;

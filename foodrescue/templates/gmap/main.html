@@ -46,7 +46,7 @@
         </div>
         </header>
   <body>
-    <h1>こんにちわ</h1>
+
     <div id="map"></div>
     <script>
 
@@ -54,9 +54,12 @@
 
 
    // サーバー通信　ここが正常なら作動する
+   var marker=[]
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
          if (this.readyState == 4 && this.status == 200) {
+           var markerData = JSON.parse(this.responseText);
+            marker.push(markerData);
            setMarker(JSON.parse(this.responseText));
          }
     };
@@ -107,6 +110,7 @@
              xhttp.send();
            });
          }
+         // Httpresponse時のスタート地点
          function initMap() {
            map = new google.maps.Map(document.getElementById('map'), {
              center: {lat: 35.651689, lng: 139.545162},
@@ -117,10 +121,18 @@
            centerControlDiv.index = 1;
            map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
          }
+
+         // var markers = [{name:'Tokyo', lat:35.681382, lng:139.76608399999998},
+         //               {name:'Shibuya', lat:35.6581823, lng:139.702043},
+         //               {name:'Ueno', lat:35.7121365, lng:139.77624709999998},
+         //               {name:'Ikebukuro', lat:35.7298477, lng:139.71192859999996}];
+
+
+          // ここでマップに表示する赤ポチのセット
          function setMarker(storeJson) {
            for(var i = 0; i < storeJson.length; i++){
              var infowindow = new google.maps.InfoWindow({
-               content: storeJson[i].name + ' ' + storeJson[i].address
+               content: storeJson[i].name + ' ' + storeJson[i].address + storeJson[i].bussiness_hours
              });
              var marker = new google.maps.Marker({
                position: {lat: Number(storeJson[i].lat), lng: Number(storeJson[i].lng)},

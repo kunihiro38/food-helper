@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # お問い合わせフォーム作成 Gmailで送信する場合#
 EMAIL_HOST = 'smtp.gmail.com'
-# 基本必要!!Gitに載せるときは削除！！！
+# 問い合わせメールの送信先!!Gitに載せるときは削除！！！
 EMAIL_HOST_USER = ''
 # 基本必要!!Gitに載せるときは削除！！！
 EMAIL_HOST_PASSWORD = ''
@@ -190,7 +190,7 @@ LOGIN_REDIRECT_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# API
+# API認証ログイン
 # client Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
 # Secret Key

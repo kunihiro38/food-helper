@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+  {% load staticfiles %}
+  <html>
+      <head>
+        <!-- head内は基本的な情報の部分なのでbody以下の見た目の部分に反映されない -->
+        <meta charset="utf-8">
+  		  <link rel="stylesheet" href="{% static "css/toppagestyle.css" %}"/>
+        <title>main </title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      </head>
+
+      <body id="a001">
+        <header>
+        <div class="header">
+          <div class="header-left">
+            <a href="{% url 'foodrescue:index' %}">
+              <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
+            </a>
+          </div>
+
+          <div class="header-right">
+              {%if user.id %}
+              <div class="after-login">プロフィール変更する</div>
+              <div class="after-login">{{user.username}}さん</div>
+              <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
+              {% else %}
+              <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+              <a href="{% url 'accounts:login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+              {% endif %}
+          </div>
+
+          <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+              height: 100%;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+            }
+          </style>
+
+        </div>
+        </header>
+  <body>
+    <h1>こんにちわ</h1>
+    <div id="map"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        var map;
+        var marker = [];
+        var infoWindow = [];
+        var markerData = [];
+        {% for i in store_data %}
+            markerData.push({
+                id: {{ i.id }},
+                name: "{{ i.name }}",
+                address: "{{ i.address }}",
+                lat: {{ i.lat }},
+                lng: {{ i.lng }},
+            });
+        {% endfor %}
+        console.log( markerData[0]['lat']);
+        function initMap() {
+ // 地図の作成
+    var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']}); // 緯度経度のデータ作成
+   map = new google.maps.Map(document.getElementById('map'), { // #sampleに地図を埋め込む
+     center: {lat: 35.651689, lng: 139.545162}, // 地図の中心を指定
+      zoom: 14 // 地図のズームを指定
+   });
+ // マーカー毎の処理
+ for (var i = 0; i < markerData.length; i++) {
+        markerLatLng = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']}); // 緯度経度のデータ作成
+        marker[i] = new google.maps.Marker({ // マーカーの追加
+         position: markerLatLng, // マーカーを立てる位置を指定
+            map: map // マーカーを立てる地図を指定
+       });
+
+     infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+         // 吹き出しに表示する内容
+         content: '<a href="/main_share/?store_id=' + markerData[i]["id"] + '"><div class="map">' +
+                        '<p>' + markerData[i]['name'] + '</p>' +
+                        '<p>' + markerData[i]['address'] + '</p>' +
+                  '</div></a>'
+       });
+     markerEvent(i); // マーカーにクリックイベントを追加
+ }
+}
+// マーカーにクリックイベントを追加
+function markerEvent(i) {
+    marker[i].addListener('click', function() { // マーカーをクリックしたとき
+      infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+  });
+}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4STb-w0TPXobqWCKYtz9afZLZiwOztuQ&callback=initMap"
+    async defer></script>
+
+      <div class="footer">
+        <div class="footer-logo">
+          <a href="{% url 'foodrescue:index' %}">
+          <img class="footer-logo" src="{% static "images/food-helper-logo2.png" %}" ref="{% url 'foodrescue:index' %}" height="50" width="160" alt="footer-logo">
+          </a>
+        </div>
+        <div class="footer-list">
+          <ul>
+            <li><a href="{% url 'foodrescue:guide' %}" style="text-decoration:none;">利用ガイド</a></li>
+            <li><a href="{% url 'foodrescue:operation' %}" style="text-decoration:none;">運営</a></li>
+            <li><a href="{% url 'foodrescue:service' %}" style="text-decoration:none;">利用規約</a></li>
+            <li><a href="{% url 'foodrescue:privacy' %}" style="text-decoration:none;">プライバシーポリシー</a></li>
+            <li><a href="{% url 'foodrescue:contact_form' %}" style="text-decoration:none;">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      </footer>
+      <div class="copyright">
+        <p><small>© 2019 Food helper</small></p>
+
+      </div>
+    </body>
+</html>

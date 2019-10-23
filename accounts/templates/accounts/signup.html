@@ -1,12 +1,11 @@
 {% extends 'accounts/base.html' %}
-
-
+{% block title %}Singup{% endblock %}
 {% block content %}
 <h1>新規会員登録</h1>
 <section class="common-form">
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_table }}
         <button type="submit" class="submit">新規登録</button>
     </form>
 </section>

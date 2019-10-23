@@ -37,7 +37,7 @@
 
 
 
-          <form action="{% url 'foodrescue:myprofile' %}" method="POST">
+          <form class='form-wrapper' action="{% url 'foodrescue:myprofile' %}" method="POST">
               {{ form.non_field_errors }}
               {% for field in form %}
                   <div class="field">

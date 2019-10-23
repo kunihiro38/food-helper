@@ -1,20 +1,14 @@
-{% extends 'accounts/base.html' %}
 
 
-{% block title %}user_form{% endblock %}
 
-{% block breadcrumb %}
-  <li class="breadcrumb-item active">テスト</li>
-{% endblock %}
 
-{% block content %}
-  <div class="row">
-    <div class="col-lg-6 col-md-8 col-sm-10">
-      <form method="post" novalidate>
-        {% csrf_token %}
-        <!-- {% include 'includes/form.html' %} -->
-        <button type="submit" class="btn btn-success">Save changes</button>
-      </form>
-    </div>
-  </div>
-{% endblock %}
+
+
+
+<form action="" method="POST">
+    <ul>
+        {{ form.as_ul }}
+    </ul>
+    {% csrf_token %}
+    <button type="submit">送信</button>
+</form>

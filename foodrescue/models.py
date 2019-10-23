@@ -55,12 +55,6 @@ class Store(models.Model):
     lat = models.DecimalField('緯度', max_digits=8, decimal_places=6)
     lng = models.DecimalField('経度', max_digits=9, decimal_places=6)
 
-    def __str__(self):
-        return str(self.name)
-    class Meta:
-        verbose_name = "店名"
-        verbose_name_plural = '店名'
-
-
-
-
+    # 1023修正
+    def get_map_data(self):
+        return self.name, self.address, self.lat, self.lng

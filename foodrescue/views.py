@@ -15,7 +15,7 @@ from .models import Member as m
 from .forms import FoodrescueForm
 
 # 0915お問い合わせフォーム作成#
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from .forms import ContactForm
@@ -23,6 +23,7 @@ from .forms import ContactForm
 # 1010プロフィール画像アップロード
 from .forms import PhotoForm
 from .models import Photo
+from .models import Store
 from django.contrib.auth.decorators import login_required
 
 # 1018追記 Gmap用？
@@ -30,15 +31,15 @@ from django.http import HttpResponse
 from django.template import loader
 
 def index(request):
-    context = {'photos': Photo.objects.all()}
-    return render(request,'index.html', context)
+    return render(request,'index.html')
 
 def photoupload(request):
     # GETのときにはformをキーにして辞書型でPhotoForm()を返している
     if request.method == 'GET':
-        return render(request, 'main_share.html', {
-            'form': PhotoForm(),
-    })
+        # PhotoForm　画像を投稿するフォーム
+        context = {'photos': Photo.objects.all(), 'form': PhotoForm()}
+        return render(request, 'main_share.html', context)
+
     # POSTで画像を投稿したときには返してあげていません。なので、いったん画像を投稿するとフォームが消えてしまう
     elif request.method == 'POST':
         form = PhotoForm(request.POST, request.FILES)
@@ -50,13 +51,12 @@ def photoupload(request):
         photo.image = form.cleaned_data['image']
         # store_id　の登録
         photo.store_id = request.POST['store_id']
+        #　データの保存
         photo.save()
-        context = {'photos': Photo.objects.all()}
-#         return redirect('/')
-#         return redirect(request, 'main_share.html')
-        #
+        # photos→html側への表示する際の辞書型変数、form　⇨　登録用
+        context = {'photos': Photo.objects.all(), 'form': PhotoForm()}
         #　renderの第３引数は、辞書型を受け取る
-        return render(request, 'main_share.html', {'form': PhotoForm()})
+        return render(request, 'main_share.html', context)
 
 # ログインしたユーザーのみに閲覧制限できるデコレータ
 # @login_required
@@ -119,7 +119,6 @@ class ContactFormView(FormView):
         form.send_email()
         return super().form_valid(form)
 
-
 class ContactResultView(TemplateView):
     template_name = 'contact/contact_result.html'
 
@@ -129,7 +128,7 @@ class ContactResultView(TemplateView):
         return context
 
 @login_required
-def main(request):
-    template = loader.get_template('gmap/main.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+def map(request):
+    s = Store.objects.all()
+    # store_data = s.get_map_data()
+    return render(request, 'map.html', {'store_data': s})
