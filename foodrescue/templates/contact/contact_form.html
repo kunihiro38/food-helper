@@ -9,13 +9,12 @@
       <!-- head内は基本的な情報の部分なのでbody以下の見た目の部分に反映されない -->
       <meta charset="utf-8">
 		  <link href="{% static "accounts_style.css" %}" rel="stylesheet">
-
       <title>お問い合わせ</title>
     </head>
 
 
 
-    <body>
+    <body id="a001">
       <header>
       <div class="header">
         <div class="header-left">
@@ -26,15 +25,17 @@
 
         <div class="header-right">
             {%if user.id %}
-            <p>ログインしました</p>
-            <p>こんにちは,{{user.username}}さん</p>
+            <a href="{% url 'accounts:user_form' %}" class="btn after-login" style="text-decoration:none;">プロフィール変更</a>
+
+            <a class="my-login">{{user.username}}さん</a>
             <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
             {% else %}
             <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
             <a href="{% url 'accounts:login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
             {% endif %}
         </div>
-      </header>
+      </div>
+    </header>
 
 
 

@@ -1,6 +1,4 @@
-
 {% extends 'accounts/base.html' %}
-
 {% block title %}Login{% endblock %}
 
 {% block content %}
@@ -26,6 +24,7 @@
         <input type="hidden" name="next" value="{{ next }}"/>
     </form>
     <div class="btn-wrapper">
+      <!-- グーグル認証によるログイン -->
       <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn google" style="text-decoration:none;"><span class="fa fa-google"></span>Googleでログイン</a><br>
 
     </div>

@@ -37,7 +37,10 @@ def photoupload(request):
     # GETのときにはformをキーにして辞書型でPhotoForm()を返している
     if request.method == 'GET':
         # PhotoForm　画像を投稿するフォーム
-        context = {'photos': Photo.objects.all(), 'form': PhotoForm()}
+        # これだとobjectsの写真all全てと写真投稿フォームを返すことになる
+        # context = {'photos': Photo.objects.all(), 'form': PhotoForm()}
+        #　特定(store_id)を返す
+        context = {'photos': Photo.objects.filter(store_id=request.GET['store_id']), 'form': PhotoForm()}
         return render(request, 'main_share.html', context)
 
     # POSTで画像を投稿したときには返してあげていません。なので、いったん画像を投稿するとフォームが消えてしまう
@@ -59,8 +62,8 @@ def photoupload(request):
         return render(request, 'main_share.html', context)
 
 # ログインしたユーザーのみに閲覧制限できるデコレータ
-# @login_required
-def myprofile(request):
+@login_required
+def create_profile(request):
     if request.method == 'POST':
         member = m(
             name=request.POST['name'],
@@ -75,10 +78,8 @@ def myprofile(request):
 
     else:
         form = FoodrescueForm()
-        return render(request, 'myprofile.html', {'form':form})
+        return render(request, 'profile/create_profile.html', {'form':form})
 
-def registration(request): # registration関数
-    return render(request, 'registration.html') # welcome.htmlを返す
 
 def operation(request): # operation関数
     return render(request,'operation.html') # operation.htmlを返す
@@ -92,22 +93,18 @@ def privacy(request): # bservice関数
 def required(request): # bservice関数
     return render(request,'required.html') # required.htmlを返す
 
-# ログインしたユーザーのみに閲覧制限できるデコレータ
-@login_required
-def mainvisual(request): # bservice関数
-    return render(request, 'mainvisual.html') # mainvisual.htmlを返す
-
 def search(request): # bservice関数
     return render(request, 'search.html') # searrch.htmlを返す
 
 def imagelist(request): # bservice関数
     return render(request, 'imagelist.html') # imagelist.htmlを返す
 
-def editprofile(request): # bservice関数
-    return render(request, 'editprofile.html') # myprofile.htmlを返す
-
 def guide(request): # bservice関数
     return render(request, 'guide.html') # guide.htmlを返す
+
+def test(request): # bservice関数
+    return render(request, 'test.html') # guide.htmlを返す
+
 
 # 0915お問い合わせフォーム作成#
 class ContactFormView(FormView):
@@ -127,6 +124,7 @@ class ContactResultView(TemplateView):
         context['success'] = "お問い合わせは正常に送信されました。"
         return context
 
+# ログインしたユーザーのみに閲覧制限できるデコレータ
 @login_required
 def map(request):
     s = Store.objects.all()

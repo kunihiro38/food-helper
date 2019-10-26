@@ -20,14 +20,22 @@
 
           <div class="header-right">
               {%if user.id %}
-              <div class="after-login">プロフィール変更する</div>
-              <div class="after-login">{{user.username}}さん</div>
+              <a href="{% url 'accounts:user_form' %}" class="btn after-login" style="text-decoration:none;">プロフィール変更</a>
+
+              <a class="my-login">{{user.username}}さん</a>
               <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
               {% else %}
               <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
               <a href="{% url 'accounts:login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
               {% endif %}
           </div>
+        </div>
+      </header>
+
+
+
+
+
 
           <style>
             /* Always set the map height explicitly to define the size of the div
@@ -46,7 +54,6 @@
         </div>
         </header>
   <body>
-    <h1>こんにちわ</h1>
     <div id="map"></div>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script>
@@ -68,8 +75,8 @@
  // 地図の作成
     var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']}); // 緯度経度のデータ作成
    map = new google.maps.Map(document.getElementById('map'), { // #sampleに地図を埋め込む
-     center: {lat: 35.651689, lng: 139.545162}, // 地図の中心を指定
-      zoom: 14 // 地図のズームを指定
+     center: {lat: 35.654931, lng: 139.546504}, // 地図の中心を指定
+      zoom: 16 // 地図のズームを指定
    });
  // マーカー毎の処理
  for (var i = 0; i < markerData.length; i++) {
@@ -118,7 +125,6 @@ function markerEvent(i) {
       </footer>
       <div class="copyright">
         <p><small>© 2019 Food helper</small></p>
-
       </div>
     </body>
 </html>

@@ -9,21 +9,94 @@
       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     </head>
 
-<body>
+    <body id="a001">
+      <header>
+      <div class="header">
+        <div class="header-left">
+          <a href="{% url 'foodrescue:index' %}">
+            <img class="header-logo" src="{% static "images/food-helper-logo.png" %}" ref="{% url 'foodrescue:index' %}" top="0" height="50" width="160" alt="header-logo">
+          </a>
+        </div>
+
+        <div class="header-right">
+            {%if user.id %}
+            <a href="{% url 'accounts:user_form' %}" class="btn after-login" style="text-decoration:none;">プロフィール変更</a>
+
+            <a class="my-login">{{user.username}}さん</a>
+            <a href="{% url 'accounts:logout' %}" class="my-parts" style="text-decoration:none;">ログアウトする</a>
+            {% else %}
+            <a href="{% url 'accounts:signup' %}" class="btn signup" style="text-decoration:none;">新規会員登録</a>
+            <a href="{% url 'accounts:login' %}" class="my-parts" style="text-decoration:none;">ログイン</a>
+            {% endif %}
+        </div>
+      </div>
+    </header>
+
+
+
+
+
+
 <div class="top-post">
-
 <form action="{% url 'foodrescue:main_share' %}" method="POST" enctype="multipart/form-data">
-
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="投稿する!">
+    <input class="main_button" type="submit" value="投稿する!">
 </form>
 </div>
 
+
 <div class="container">
-            {% for p in photos %}
-                    <img class="inline-block-test" src="{{ p.image.url }}"/>
-            {% endfor %}
+
+    {% for p in photos %}
+      <label for="popup-on">
+        <div class="btn-open">
+          <img class="inline-block-test" src="{{ p.image.url }}" alt="" class="layer-img"/>
+        </div>
+        </label>
+    {% endfor %}
+
+  <input type="checkbox" id="popup-on">
+
+
+       <!-- ポップアップの中身 -->
+       {% for p in photos %}
+         <div class="popup">
+           <div class="popup-content">
+           <label for="popup-on" class="icon-close">×</label>
+       <div class="btn-open">
+           <img class="inline-block-test" src="{{ p.image.url }}" alt="" class="layer-img"/>
+         </div>
+         <label for="popup-on"><div class="btn-close">閉じる</div></label>
+       </div>
+      </div>
+       {% endfor %}
+        <!-- ./ポップアップの中身　ここまで -->
 </div>
-</body>
+
+
+
+
+      <footer>
+      <div class="footer">
+        <div class="footer-logo">
+          <a href="{% url 'foodrescue:index' %}">
+          <img class="footer-logo" src="{% static "images/food-helper-logo2.png" %}" ref="{% url 'foodrescue:index' %}" height="50" width="160" alt="footer-logo">
+          </a>
+        </div>
+        <div class="footer-list">
+          <ul>
+            <li><a href="{% url 'foodrescue:guide' %}" style="text-decoration:none;">利用ガイド</a></li>
+            <li><a href="{% url 'foodrescue:operation' %}" style="text-decoration:none;">運営</a></li>
+            <li><a href="{% url 'foodrescue:service' %}" style="text-decoration:none;">利用規約</a></li>
+            <li><a href="{% url 'foodrescue:privacy' %}" style="text-decoration:none;">プライバシーポリシー</a></li>
+          	<li><a href="{% url 'foodrescue:contact_form' %}" style="text-decoration:none;">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      </footer>
+      <div class="copyright">
+        <p><small>© 2019 Food helper</small></p>
+      </div>
+    </body>
 </html>

@@ -29,6 +29,7 @@ class PhotoForm(forms.Form):
     #　投稿画像
     image = forms.ImageField()
 
+
 # class FoodrescueForm(forms.ModelForm): # modelformだと簡単だが応用が効きにくい
 class FoodrescueForm(forms.Form):
 #     class Meta: クラスメタとは
@@ -131,5 +132,3 @@ class ContactForm(forms.Form):
             send_mail(subject, message, from_email, recipient_list)
         except BadHeaderError:
             return HttpResponse("無効なヘッダが検出されました。")
-
-

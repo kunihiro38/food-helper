@@ -1,22 +1,19 @@
 body {
-  font-family: "Avenir Next";
+  font-family: "Avenir Next";y
 }
 
 li {
   list-style: none;
 }
 
-
-header {
+.header {
+  top: 0px;
   background-color:white;
-  height: 50px;
   width: 100%;
   position:fixed;
-  top:0;
   z-index:10;
   display: table;
-  margin: 0 0 0px;
-  padding: 2px 0;
+  margin: 0;
   border-bottom: 1px solid #cccccc;
 }
 
@@ -25,30 +22,25 @@ header {
 }
 
 .header-right {
+
   float: right;
   padding:0px 18px;
 }
 
+/* ログイン後のレイアウト↓↓ */
 
-.btn{
-  padding:8px 24px;
-  color:white;
-  display:inline-block;
-  opacity:0.8;
-  border-radius:10px;
-}
-.btn:hover{
-  opacity:1;
-}
-.signup{
-  background-color:#239b76;
-}
+.after-login{
+  background-color: #239b76;
+  margin: 0 0 0.3em;
+  position: relative;
+  }
 
+/* ログイン後のレイアウト/ログアウトする↓↓ */
 .header-right a.my-parts {
+  margin: 0px 5px;
   color: #239b76;
   display: inline-block;
-  padding:6px 24px;
-  margin: 0 0 0.8em;
+  padding:6px 15px;
   background: #fff;
   border: .1000em solid #239b76;
   border-radius: 10px;
@@ -56,6 +48,18 @@ header {
   position: relative;
   letter-spacing:0.1em;
 }
+
+/* ログイン後の名前表示箇所 */
+.my-login{
+    margin: 0px 10px;
+    color: #ffffff;
+    display: inline-block;
+    padding: 6px 15px;
+    background: #69ea37;
+    border-radius: 10px;
+}
+
+
 .header-right a.my-parts::after {
   position: absolute;
   font-family: 'Font Awesome 5 Free';
@@ -66,6 +70,7 @@ header {
   bottom: auto;
   transform: translateY(-50%);
 }
+
 .header-right a.my-parts:hover {
   background: #239b76;
   color: white;
@@ -298,6 +303,13 @@ header .site-name a {
 }
 
 
+.main{
+  text-align: center;
+  padding: 100px;
+}
+
+
+
 /* ----------------------- */
 
 
@@ -363,19 +375,27 @@ header .site-name a {
   font-size: 30px;
 }
 
-.login_btn{
-  background-color:gray;
-  padding:10px 87px;
-  margin-top:20px;
+
+.btn{
+  padding:8px 24px;
   color:white;
   display:inline-block;
   opacity:0.8;
   border-radius:10px;
-  cursor: pointer;
+  margin-top:7px;
+  background-color: #239b76;
 }
 
-.login_btn:hover{
+.btn:hover{
   opacity:1;
+}
+
+.btn-wrapper{
+  margin:20px 0px;
+}
+
+.btn-wrapper p{
+  margin:10px;
 }
 
 .google{

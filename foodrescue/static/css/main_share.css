@@ -1,31 +1,240 @@
-/* 画像を投稿するところ */
-.top-post{
-  font-size: 20px;
-  text-align: center;
-  margin:20px auto;
+body {
+  font-family: "Avenir Next";y
 }
 
-.container {
+li {
+  list-style: none;
+}
+
+.header {
+  top: 0px;
+  background-color:white;
+  width: 100%;
+  position:fixed;
+  z-index:10;
+  display: table;
+  margin: 0;
+  border-bottom: 1px solid #cccccc;
+}
+
+.header-logo {
+  float: left;
+}
+
+.header-right {
+
+  float: right;
+  padding:0px 18px;
+}
+
+/* ログイン後のレイアウト↓↓ */
+
+.after-login{
+  background-color: #239b76;
+  margin: 0 0 0.3em;
+  position: relative;
+  }
+
+/* ログイン後のレイアウト/ログアウトする↓↓ */
+.header-right a.my-parts {
+  margin: 0px 5px;
+  color: #239b76;
+  display: inline-block;
+  padding:6px 15px;
+  background: #fff;
+  border: .1000em solid #239b76;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  letter-spacing:0.1em;
+}
+
+/* ログイン後の名前表示箇所 */
+.my-login{
+    margin: 0px 10px;
+    color: #ffffff;
+    display: inline-block;
+    padding: 6px 15px;
+    background: #69ea37;
+    border-radius: 10px;
+}
+
+
+.header-right a.my-parts::after {
+  position: absolute;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  top: 50%;
+  right: .4em;
+  left: auto;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+
+.header-right a.my-parts:hover {
+  background: #239b76;
+  color: white;
+  /* hover後の文字色 */
+}
+
+/* --------ここまでがヘッダー--------------- */
+
+.btn{
+  padding:8px 24px;
+  color:white;
+  display:inline-block;
+  opacity:0.8;
+  border-radius:10px;
+  margin-top:7px;
+}
+
+.btn:hover{
+  opacity:1;
+}
+
+.btn-wrapper{
+  margin:20px 0px;
+}
+
+.btn-wrapper p{
+  margin:10px;
+}
+
+/* --------ここまでがヘッダーのボタン関連--------------- */
+
+
+/* 画像を投稿するところ */
+.container{
+  width: 95%;
+  padding: 50px 15px;
+  margin: auto;
   background-color: white;
   text-align: center;
   border: #33CC00 solid 1px;
   border-radius: 10px;
+  }
+
+
+.top-post{
+  font-size: 20px;
+  text-align: center;
+  margin:100px auto;
+}
+
+.layer-img{
+  width:293;
+  height: auto;
 }
 
 .inline-block-test {
   /* inline-blockでレイアウト綺麗に並ぶ */
-  display: inline-block;
+  /* display: inline-block; */
   /* widthを指定、heightをautoにすることで、自動調整 */
   height: auto;
   width: 293px;
   margin:20px;
-  transition: all 1s ease-in-out;
   cursor: pointer;
 }
-/* // 本当はFocusでやりたいが・・・ */
-.inline-block-test:hover{
-    height:auto;
-    width:50%;
-    transition: all 0.5s ease-in-out;
-    /* outline:none; */
+
+/* ポップアップウインドウの設定 */
+.popup {
+  height: auto;
+  width: 293px;
+  margin:20px;
+  cursor: pointer;
+  width: 293px;
+  background-color: #efefef;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, .8);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 70vw;
+  height: 55vw;
+}
+/* チェックボックスの初期設定 */
+#popup-on{
+  display: none;
+}
+/* チェックされたらポップアップウインドウを開く */
+#popup-on:checked + .popup{
+  display: block;
+}
+
+/* 閉じるアイコン（右上） */
+.icon-close{
+  background: #000;
+  color: #fff;
+  font-size: 30px;
+  padding: 0 10px;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+
+/* 開くボタン */
+.btn-open{
+  background: #fff;
+  border-radius: 10px;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px auto;
+  width: 95%;
+  text-align: center;
+  display: block;
+}
+
+/* ポップアップの内容 */
+.popup-content{
+  /* margin: 40px auto 40px auto; */
+  zoom:200%;
+}
+
+/* フッター関係 */
+.footer {
+  background-color: #239b76;
+  color: #fff;
+  height: 50px;
+  padding-bottom: 20px;
+}
+.footer a{
+  color:white;
+  position: relative;
+  display:inline-block;
+  text-decoration:none;
+}
+.footer a::after{
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: white;
+  visibility: hidden;
+}
+.footer a:hover::after {
+  bottom: 2px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.footer-logo {
+  float: left;
+  margin:5px 2px;
+}
+
+.footer-list li{
+  float: right;
+  padding: 21px 8px;
+  margin-bottom:10px;
+}
+
+.copyright p{
+  text-align: center;
 }

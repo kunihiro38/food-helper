@@ -31,20 +31,9 @@ li {
 
 .after-login{
   background-color: #239b76;
-  color: white;
-  display: inline-block;
-  padding: 8px 16px;
   margin: 0 0 0.3em;
   position: relative;
-  letter-spacing: 0.1em;
-  border-radius: 10px;
-  margin-top: 7px;
-  opacity: 0.8;
   }
-
-
-
-
 
 /* ログイン後のレイアウト/ログアウトする↓↓ */
 .header-right a.my-parts {
@@ -88,6 +77,45 @@ li {
   /* hover後の文字色 */
 }
 
+/* --------ここまでがヘッダー--------------- */
+
+
+.btn{
+  padding:8px 24px;
+  color:white;
+  display:inline-block;
+  opacity:0.8;
+  border-radius:10px;
+  margin-top:7px;
+  background-color: #239b76;
+}
+
+.btn:hover{
+  opacity:1;
+}
+
+.btn-wrapper{
+  margin:20px 0px;
+}
+
+.btn-wrapper p{
+  margin:10px;
+}
+
+.service-start{
+  padding: 12px 36px;
+  color: white;
+  display: inline-block;
+  opacity: 0.8;
+  border-radius: 10px;
+  margin-top: 19px;
+  background-color: red;
+  font-size: larger;
+}
+.service-start:hover{
+  opacity:1;
+}
+
 
 .container{
   width: 1170px;
@@ -111,40 +139,6 @@ li {
 }
 .top-wrapper p{
   opacity: 0.7;
-}
-.btn{
-  padding:8px 24px;
-  color:white;
-  display:inline-block;
-  opacity:0.8;
-  border-radius:10px;
-  margin-top:7px;
-}
-.btn:hover{
-  opacity:1;
-}
-
-
-
-.signup{
-  background-color:#239b76;
-}
-.facebook{
-  background-color: #3b5998;
-  margin-right: 10px;
-}
-.twitter{
-  background-color: #55acee;
-}
-.btn-wrapper{
-  margin:20px 0px;
-}
-.btn-wrapper p{
-  margin:10px;
-}
-
-.fa{
-  margin-right:5px;
 }
 
 
