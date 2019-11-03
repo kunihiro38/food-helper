@@ -6,7 +6,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 # 1016 GoogleMap専用
 from foodrescue.models import Store
+
 from rest_framework import routers, serializers, viewsets
+
+from accounts import views as accounts_views
+
+
+
 # 1016　GoogleMAP専用
 # モデルをJSONにマッピング（変換）するシリアライザ
 class StoreSerializer(serializers.HyperlinkedModelSerializer):
@@ -31,6 +37,7 @@ urlpatterns = [
     path('auth/', include('social_django.urls', namespace='social')),
     path('gmap/api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
     ]
 
 # 1018 path(gmap/api/ ⇨　django　の仕組み上第一引数のURLにアクセス時に、第二引数へ飛ぶ

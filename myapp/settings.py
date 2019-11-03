@@ -182,6 +182,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIR = [
     STATIC_DIR
     ]
+
+# ログインページのURL
+# LOGIN_URL
 # Login後のリダイレクト
 LOGIN_REDIRECT_URL = '/'
 
@@ -192,6 +195,6 @@ MEDIA_URL = '/media/'
 
 # API認証ログイン
 # client Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '385759056644-ar4bde30fmgqr6ar3p7vvmas0tju415q.apps.googleusercontent.com'
 # Secret Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Bif9eHg7SvKn3QG5j7ohtxCL'

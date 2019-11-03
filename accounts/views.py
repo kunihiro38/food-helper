@@ -1,39 +1,52 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
+#1030　reverse追加 updateviewの為
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.views import LoginView as AuthLoginView
 from django.contrib.auth.views import LogoutView as AuthLogoutView
+
+# signupviewに関して。新規登録後⇨即プロフィール登録用
+from django.contrib.auth import authenticate, login
+
 # from django.contrib.auth.views import
 from foodrescue.models import Member
 
 # 1019プロフィール更新
 from django.views.generic import UpdateView
+from django.utils.decorators import method_decorator
+
+# login_required
+from django.contrib.auth.decorators import login_required
 
 
 class LoginView(AuthLoginView):
     template_name = "accounts/login.html"
 
 class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
-    # 新規会員登録完了⇨プロフィール入力へ進む
-    # reverse_lazy()はreverse()の遅延評価版で、URLConfがロードされる前にURLの逆引きをしたい時に使う。
-    # クラスベース汎用ビューではreverse_lazy()を使う。
-    success_url = reverse_lazy('foodrescue:create_profile')
-    # 表示に使用するテンプレート
     template_name = 'accounts/signup.html'
-
+    form_class = UserCreationForm
+    def form_valid(self, form):
+        form.save()
+        username, password = form.cleaned_data.get('username'), form.cleaned_data.get('password1')
+        user = authenticate(self.request, username=username, password=password)
+        login(self.request, user)
+        #　signup有効なら下記登録画面へ遷移
+        return redirect('foodrescue:create_profile')
 
 class LogoutView(AuthLogoutView):
     template_name = 'accounts/logout.html'
 
 # 1019プロフィール変更
+@method_decorator(login_required, name='dispatch')
 class UserUpdateView(UpdateView):
     model = Member
-    fields = ('name', 'gender', 'age', 'address1', 'self_introduction' )
-    # テンプレートファイル名を指定
+    fields = ('name','gender', 'age', 'address1', 'self_introduction')
+#     fields = ('gender',)
     template_name = 'accounts/user_form.html'
     # 正常に処理が完了した際のリダイレクト先
-    success_url = reverse_lazy('foodrescue:myprofile')
+    success_url = reverse_lazy('foodrescue:index')
+
     def get_object(self):
+        #　現状のログインユーザーを指すself.request.user
         return self.request.user

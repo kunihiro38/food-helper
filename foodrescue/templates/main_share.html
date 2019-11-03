@@ -38,7 +38,8 @@
 
 
 <div class="top-post">
-<form action="{% url 'foodrescue:main_share' %}" method="POST" enctype="multipart/form-data">
+ <!-- // コメントアウトすれば投稿できる -->
+<!-- <form novalidate method="POST" enctype="multipart/form-data"> -->
     {% csrf_token %}
     {{ form }}
     <input class="main_button" type="submit" value="投稿する!">
@@ -61,6 +62,7 @@
 
        <!-- ポップアップの中身 -->
        {% for p in photos %}
+
          <div class="popup">
            <div class="popup-content">
            <label for="popup-on" class="icon-close">×</label>
@@ -70,10 +72,25 @@
          <label for="popup-on"><div class="btn-close">閉じる</div></label>
        </div>
       </div>
+
        {% endfor %}
         <!-- ./ポップアップの中身　ここまで -->
 </div>
 
+
+
+        <!-- /*start popup*/ -->
+                    <div class="popup_wrap">
+                   <input id="trigger" type="checkbox" checked>
+                       <div class="popup_overlay">
+                           <label for="trigger" class="popup_trigger"></label>
+                           <div class="popup_content">
+                               <label for="trigger" class="close_btn">×</label>
+                               <p>テストモードでの運営中のため、現在投稿機能を中止しております。シェア画像をクリックしてみてください。</p>
+                           </div>
+                       </div>
+                       </div>
+        <!-- /*finish popup*/ -->
 
 
 

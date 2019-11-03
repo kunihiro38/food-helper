@@ -75,7 +75,7 @@
  // 地図の作成
     var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']}); // 緯度経度のデータ作成
    map = new google.maps.Map(document.getElementById('map'), { // #sampleに地図を埋め込む
-     center: {lat: 35.654931, lng: 139.546504}, // 地図の中心を指定
+     center: {lat: 35.652913, lng: 139.543483}, // 地図の中心を指定
       zoom: 16 // 地図のズームを指定
    });
  // マーカー毎の処理
@@ -105,6 +105,24 @@ function markerEvent(i) {
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4STb-w0TPXobqWCKYtz9afZLZiwOztuQ&callback=initMap"
     async defer></script>
+
+
+
+    <!-- /*start popup*/ -->
+                <div class="popup_wrap">
+               <input id="trigger" type="checkbox" checked>
+                   <div class="popup_overlay">
+                       <label for="trigger" class="popup_trigger"></label>
+                       <div class="popup_content">
+                           <label for="trigger" class="close_btn">×</label>
+                           <p>テストモードでの運営中になります！MAP中の赤ピンをクリックしてリンク先に飛んでみてください！</p>
+                       </div>
+                   </div>
+                   </div>
+    <!-- /*finish popup*/ -->
+
+
+
 
       <div class="footer">
         <div class="footer-logo">
