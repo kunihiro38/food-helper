@@ -195,6 +195,6 @@ MEDIA_URL = '/media/'
 
 # API認証ログイン
 # client Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '385759056644-ar4bde30fmgqr6ar3p7vvmas0tju415q.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
 # Secret Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Bif9eHg7SvKn3QG5j7ohtxCL'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
