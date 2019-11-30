@@ -27,7 +27,7 @@ SECRET_KEY = '!cixt!svd5dbohg=u&1&*1+#(y5#1z()2p69lx1et7i-vd35@^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # お問い合わせフォーム作成 Gmailで送信する場合#
 EMAIL_HOST = 'smtp.gmail.com'
