@@ -36,3 +36,17 @@ class SignUpView(generic.CreateView):
 
 class LogoutView(AuthLogoutView):
     template_name = 'accounts/logout.html'
+
+# 1019プロフィール変更
+@method_decorator(login_required, name='dispatch')
+class UserUpdateView(UpdateView):
+    model = Member
+    fields = ('name','gender', 'age', 'address1', 'self_introduction')
+#     fields = ('gender',)
+    template_name = 'accounts/user_form.html'
+    # 正常に処理が完了した際のリダイレクト先
+    success_url = reverse_lazy('foodrescue:index')
+
+    def get_object(self):
+        #　現状のログインユーザーを指すself.request.user
+        return self.request.user
