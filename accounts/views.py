@@ -18,6 +18,7 @@ from django.utils.decorators import method_decorator
 
 # login_required
 from django.contrib.auth.decorators import login_required
+from foodrescue.forms import FoodrescueForm
 
 
 class LoginView(AuthLoginView):
@@ -37,16 +38,27 @@ class SignUpView(generic.CreateView):
 class LogoutView(AuthLogoutView):
     template_name = 'accounts/logout.html'
 
-# 1019プロフィール変更
-@method_decorator(login_required, name='dispatch')
-class UserUpdateView(UpdateView):
-    model = Member
-    fields = ('name','gender', 'age', 'address1', 'self_introduction')
-#     fields = ('gender',)
-    template_name = 'accounts/user_form.html'
-    # 正常に処理が完了した際のリダイレクト先
-    success_url = reverse_lazy('foodrescue:index')
+# 1205　プロフィール変更UpdateViewののclassじゃないバージョンの作成
+def user_form(request):
+#     form = user_form()
+    params={
+    'form':FoodrescueForm()
+    }
+    return render(request, 'accounts/user_form.html', params)
+#     if (request.method == "POST"):
+#         return render(request, 'accounts/user_form.html', params)
 
-    def get_object(self):
-        #　現状のログインユーザーを指すself.request.user
-        return self.request.user
+# # 1019プロフィール変更
+# @method_decorator(login_required, name='dispatch')
+# class UserUpdateView(UpdateView):
+#     model = Member
+#     fields = ('name','gender', 'age', 'address1', 'self_introduction')
+# #     fields = ('gender',)
+#     template_name = 'accounts/user_form.html'
+#     # 正常に処理が完了した際のリダイレクト先
+#     success_url = reverse_lazy('foodrescue:index')
+#
+#
+#     def get_object(self):
+#         #　現状のログインユーザーを指すself.request.user
+#         return self.request.user
